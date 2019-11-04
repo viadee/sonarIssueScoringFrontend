@@ -1,0 +1,31 @@
+nav {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 60px;
+    background-color: powderblue;
+
+}
+
+a {
+    float: left;
+    font-style: bold;
+    padding: 14px;
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    background-color: aquamarine;
+    color: rgb(44, 44, 44);
+}
+
+div {
+    float:left;
+}
+
+.title {
+    font-size: 24px;
+    //font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+}
+
