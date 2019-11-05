@@ -1,13 +1,20 @@
-<div class="container">
-  <div class="row">
-    <h3>Neues Projekt erstellen...</h3>
-  </div>
-  <div class="row">
-    <div class="col-lg-8">
-      <input type="text" />
+<div class="login-container">
+  <h2>Anmelden</h2>
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        required
+        autofocus
+        name="username"
+        [(ngModel)]="authUsername"
+      />
     </div>
-    <div class="col-lg-4">
-      <button>Check</button>
-    </div>
-  </div>
+    <button type="submit" class="btn btn-primary" (click)="onConnectToGithub()">
+      Anmelden
+    </button>
+  </form>
 </div>

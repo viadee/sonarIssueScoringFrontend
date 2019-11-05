@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-login-form",
@@ -6,30 +7,30 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login-form.component.scss"]
 })
 export class LoginFormComponent implements OnInit {
-  constructor() {}
+  authUsername: string;
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {}
+
+  onConnectToGithub() {
+    let url = "localhost:8080/server/git-repo?username=" + this.authUsername;
+  }
 }
 
-class GitServer {
-  private username?: string;
-  private token?: string;
+class Repository {
+  private id: number;
+  private name: string;
 
-  constructor() {}
-
-  getUsername() {
-    return this.username;
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
   }
 
-  getToken() {
-    return this.token;
+  getId() {
+    return this.id;
   }
 
-  setUsername(username: string) {
-    this.username = username;
-  }
-
-  setToken(token: string) {
-    this.token = token;
+  getName() {
+    return this.name;
   }
 }
