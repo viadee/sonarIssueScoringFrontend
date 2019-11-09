@@ -8,7 +8,8 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatButtonModule, MatTabsModule } from "@angular/material";
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,15 @@ import { HttpClientModule } from "@angular/common/http";
     NavbarComponent,
     LoginFormComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTabsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
