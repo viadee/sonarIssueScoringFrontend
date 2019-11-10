@@ -26,6 +26,13 @@ div {
   float: left;
 }
 
+button {
+  margin-left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+}
+
 .title {
   font-size: 24px;
   //font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
