@@ -11,7 +11,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 //Material
-import { MatButtonModule, MatTabsModule, MatDialogModule } from "@angular/material";
+import {
+  MatButtonModule,
+  MatTabsModule,
+  MatDialogModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
