@@ -5,7 +5,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 
 const routes: Routes = [
-  { path: "", component: LoginFormComponent },
+  { path: "", component: DashboardComponent },
   { path: "dashboard", component: DashboardComponent }
 ];
 
