@@ -10,36 +10,15 @@ import { map, filter, catchError, mergeMap } from "rxjs/operators";
 })
 export class LoginFormComponent implements OnInit {
   authUsername: string;
-  serverService: ServerService;
   repositories: Observable<any>;
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.serverService = new ServerService(this.http);
-  }
+  ngOnInit() {}
 
   onConnectToGithub() {
-    /* this.repositories = this.http
-      .get("/api/server/git-repo?username=trnhan251")
-      .pipe(
-        map((e: Response) => e.json()),
-        catchError((e: Response) => throwError(e))
-      ); */
-
     this.http
       .get("/api/server/git-repo?username=trnhan251")
       .subscribe(repos => console.log(repos));
-  }
-}
-
-class ServerService {
-  repos: Observable<Repository[]>;
-
-  constructor(private http: HttpClient) {}
-
-  connectToPublicGithub(username: String) {
-    let url = "/api/git-repo?username=" + username;
-    this.http.get(url).subscribe(repos => console.log(repos));
   }
 }
 
