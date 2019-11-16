@@ -35,6 +35,10 @@ button {
   float: right;
 }
 
+button.active {
+  color: dimgray;
+}
+
 .title {
   font-size: 24px;
   //font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

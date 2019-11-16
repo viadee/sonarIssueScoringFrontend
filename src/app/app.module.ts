@@ -16,6 +16,7 @@ import {
   MatTabsModule,
   MatDialogModule
 } from "@angular/material";
+import { WizardComponent } from './wizard/wizard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {
     //DashboardComponent,
     routingComponents,
     NavbarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    WizardComponent
   ],
   imports: [
     BrowserModule,
