@@ -1,1 +1,32 @@
-<p>wizard works!</p>
+<mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value"
+                (selectedChangeIndex)="selected.setValue($event)">
+<mat-tab label="Repository Config">
+<div class="tabContent">
+    <span>Please enter all informations aboute your Repository (Subversion or Git)</span>
+    <br><br>
+    <mat-form-field>
+        <input matInput placeholder="Repository URL" type="text" [(ngModel)] ="repo" (keyup)="OnInput($event)">
+    </mat-form-field>
+    
+    <!--<button mat-raised-button color="primary" style="left: 16px;">Login</button>-->
+    <app-login-form style="margin-top: 16px;"></app-login-form>
+    <br>
+    <button mat-raised-button>Next</button>
+</div>
+
+
+</mat-tab>
+
+<mat-tab label="Cluster Config">
+
+
+</mat-tab>
+
+<mat-tab label="Analysis Config" disabled=true>
+
+
+</mat-tab>
+
+
+
+</mat-tab-group>

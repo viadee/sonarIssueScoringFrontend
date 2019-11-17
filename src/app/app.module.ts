@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule, routingComponents } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 //import { DashboardComponent } from './dashboard/dashboard.component';
+//import { WizardComponent } from './wizard/wizard.component';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { FormsModule } from "@angular/forms";
@@ -14,9 +15,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButtonModule,
   MatTabsModule,
-  MatDialogModule
+  MatDialogModule,
+  MatInputModule
 } from "@angular/material";
-import { WizardComponent } from './wizard/wizard.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +26,8 @@ import { WizardComponent } from './wizard/wizard.component';
     //DashboardComponent,
     routingComponents,
     NavbarComponent,
-    LoginFormComponent,
-    WizardComponent
+    LoginFormComponent
+    //WizardComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,9 @@ import { WizardComponent } from './wizard/wizard.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
