@@ -18,13 +18,18 @@ export class WizardComponent implements OnInit {
   secondStep = false;
   thirdStep = false;
 
+  loginAccordion = false;
+  
+
 
   OnInput(event: any) {
     
     if((event.target.value).startsWith("www.github.com/") || (event.target.value).startsWith("https://www.github.com/")) {
       this.firstStep = true;
+      this.loginAccordion = true;
     } else {
       this.firstStep = false;
+      this.loginAccordion = false;
     }
   }
 

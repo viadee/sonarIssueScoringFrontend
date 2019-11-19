@@ -5,7 +5,24 @@
         <mat-form-field>
             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" required>
         </mat-form-field>
+        <button mat-raised-button style="margin-left: 16px;">Check Connection</button>
         <br><br>
+        
+        <mat-accordion>
+                <mat-expansion-panel disabled hideToggle [expanded]="loginAccordion">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      GitHub-Login
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{loginAccordion ? '' : 'You can Login, if you enter the URL'}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <app-login-form></app-login-form>
+                </mat-expansion-panel>
+                
+              </mat-accordion>
+
     </div>
         <button mat-raised-button matStepperNext [disabled]="!firstStep">Next</button>      
     </mat-step>

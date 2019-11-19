@@ -17,7 +17,8 @@ import {
   MatTabsModule,
   MatDialogModule,
   MatInputModule,
-  MatStepperModule
+  MatStepperModule,
+  MatExpansionModule
 } from "@angular/material";
 
 
@@ -40,7 +41,8 @@ import {
     MatTabsModule,
     MatDialogModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
