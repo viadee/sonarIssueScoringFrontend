@@ -18,7 +18,7 @@ export class WizardComponent implements OnInit {
   secondStep = false;
   thirdStep = false;
 
-  loginAccordion = false;
+  loginAccordion = false; //Controlls the Expansion of the Accordion
   
 
 
