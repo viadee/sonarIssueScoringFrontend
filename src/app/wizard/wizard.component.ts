@@ -14,6 +14,21 @@ export class WizardComponent implements OnInit {
   ngOnInit() {
   }
 
+  firstStep = false;
+  secondStep = false;
+  thirdStep = false;
+
+
+  OnInput(event: any) {
+    
+    if((event.target.value).startsWith("www.github.com/") || (event.target.value).startsWith("https://www.github.com/")) {
+      this.firstStep = true;
+    } else {
+      this.firstStep = false;
+    }
+  }
+
+  /*
   selected = new FormControl(0);
   tabs:number = 3;
   index:number = 0;
@@ -30,7 +45,7 @@ export class WizardComponent implements OnInit {
       console.log("Subversion!");
     }
   }
-
+*/
   
 
 

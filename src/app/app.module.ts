@@ -16,7 +16,8 @@ import {
   MatButtonModule,
   MatTabsModule,
   MatDialogModule,
-  MatInputModule
+  MatInputModule,
+  MatStepperModule
 } from "@angular/material";
 
 
@@ -38,7 +39,8 @@ import {
     MatButtonModule,
     MatTabsModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

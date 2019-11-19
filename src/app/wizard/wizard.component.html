@@ -1,3 +1,34 @@
+<mat-horizontal-stepper linear>
+
+    <mat-step label="Repository" [completed]="firstStep">
+        <div class="tabContent">
+        <mat-form-field>
+            <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" required>
+        </mat-form-field>
+        <br><br>
+    </div>
+        <button mat-raised-button matStepperNext [disabled]="!firstStep">Next</button>      
+    </mat-step>
+    
+    <mat-step label="Cluster Config" [completed]="secondStep">
+      
+
+
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>   
+    </mat-step>
+
+    <mat-step label="Analysis Config" [completed]="thirdStep">
+      
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" style="float:right;">Start Analysis</button>    
+    </mat-step>
+
+    
+  </mat-horizontal-stepper>
+
+
+<!--Old version with tabs (will be removed later)
 <mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value"
                 (selectedChangeIndex)="selected.setValue($event)">
 <mat-tab label="Repository Config">
@@ -8,7 +39,7 @@
         <input matInput placeholder="Repository URL" type="text" [(ngModel)] ="repo" (keyup)="OnInput($event)">
     </mat-form-field>
     
-    <!--<button mat-raised-button color="primary" style="left: 16px;">Login</button>-->
+    
     <app-login-form style="margin-top: 16px;"></app-login-form>
     <br>
     <button mat-raised-button>Next</button>
@@ -30,3 +61,4 @@
 
 
 </mat-tab-group>
+-->
