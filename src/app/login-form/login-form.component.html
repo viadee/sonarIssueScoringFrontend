@@ -55,6 +55,8 @@
   </mat-tab>
 </mat-tab-group>
 
+<button mat-raised-button (click)="showRepo()">Log (Test)</button>
+
 <pre>
   {{ repositories | async | json }}
 </pre>
