@@ -10,6 +10,7 @@ import { LoginFormComponent } from "./login-form/login-form.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';  //
 
 //Material
 import {
@@ -18,7 +19,9 @@ import {
   MatDialogModule,
   MatInputModule,
   MatStepperModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 
 
@@ -28,7 +31,7 @@ import {
     //DashboardComponent,
     routingComponents,
     NavbarComponent,
-    LoginFormComponent
+    LoginFormComponent,
     //WizardComponent
   ],
   imports: [
@@ -42,7 +45,9 @@ import {
     MatDialogModule,
     MatInputModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

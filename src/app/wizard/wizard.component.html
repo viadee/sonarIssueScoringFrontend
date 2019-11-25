@@ -3,21 +3,23 @@
     <mat-step label="Repository" [completed]="firstStep">
         <div class="tabContent">
         <mat-form-field>
-            <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" required>
+            <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required>
         </mat-form-field>
-        <button mat-raised-button style="margin-left: 16px;">Check Connection</button>
+        <button mat-raised-button style="margin-left: 16px;">Reset</button>
         <br><br>
         <mat-form-field>
-          <input matInput placeholder="Username"  required>
-      </mat-form-field>
+          <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
+        </mat-form-field>
+        <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()">Check Connection</button>
+       
       <br><br>
       <mat-form-field>
-        <input matInput type="password" placeholder="Password" required>
+        <input matInput type="password" placeholder="Password" disabled>
     </mat-form-field>
     <br><br>
         <div class="mat-accordion">
         <mat-accordion>
-                <mat-expansion-panel disabled hideToggle [expanded]="loginAccordion">
+                <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
                     <!--
                   <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -28,7 +30,18 @@
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   -->
-                  <app-login-form></app-login-form>
+                  <!--<app-login-form></app-login-form>-->
+                  <mat-spinner Indeterminate *ngIf="progress" style="margin-top: 16px;"></mat-spinner>
+                  <mat-radio-group>
+                  <div *ngFor="let branch of branches">
+                        <br>
+                        <mat-radio-button>
+                        {{branch.name}}
+                        </mat-radio-button>
+                        <br>
+                  </div>
+                </mat-radio-group>
+
                 </mat-expansion-panel>
                 
               </mat-accordion>
@@ -40,7 +53,7 @@
     
     <mat-step label="Cluster Config" [completed]="secondStep">
       
-
+        <input type="radio" value="Male" name="Male"> Male
 
         <button mat-raised-button matStepperPrevious>Back</button>
         <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>   

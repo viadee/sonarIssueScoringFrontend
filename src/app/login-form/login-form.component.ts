@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { map, filter, catchError, mergeMap } from "rxjs/operators";
+//import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: "app-login-form",
@@ -14,36 +15,34 @@ export class LoginFormComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   repos;
+  branches;
 
 
-  //Test-------------------
-  branch1:Branch = new Branch("master");
-  branch2:Branch = new Branch("SNAPSHOT");
-  branchArray = [this.branch1, this.branch2];
-  testVar:Repository = new Repository(1, "viadee", this.branchArray);
+  
 
   ngOnInit() {
-    /*
-    var ausgabe:Branch[];
-    console.log(this.testVar.getBranches()[0].getName());
-    */
+    
+    
+    
   }
 
   showRepo() {
-    console.log(this.repos[0].getBranches()[0].getName());
+    console.log(this.repos[0].branches[0].name);
+    
   }
   
-  
-  
-  //---------------------------
 
   onConnectToGithub() {
     
     this.http
-      .get<Repository[]>("/api/server/git-repo?username=" + this.authUsername)
+      .get("/api/server/git-repo?username=" + this.authUsername)
       .subscribe(repos => {
-        //console.log(repos)
         this.repos = repos;
+        this.branches = this.repos[0].branches;
+        var i; 
+        for(i in this.repos[0].branches) {
+          console.log(this.repos[0].branches[i].name);
+        }
       });
   } 
 }
@@ -51,12 +50,16 @@ export class LoginFormComponent implements OnInit {
 class Repository {
   private id: number;
   private name: string;
+  private full_name: string;
+  private owner: User;
   private branches: Branch[];
   
 
-  constructor(id: number, name: string, branches:Branch[]) {
+  constructor(id: number, name: string, full_name: string, owner: User, branches:Branch[]) {
     this.id = id;
     this.name = name;
+    this.full_name = full_name;
+    this.owner = owner;
     this.branches = branches;
   }
 
@@ -66,6 +69,14 @@ class Repository {
 
   getName() {
     return this.name;
+  }
+
+  getFull_name() {
+    return this.full_name;
+  }
+
+  getOwner() {
+    return this.owner;
   }
 
   getBranches() {
@@ -82,5 +93,29 @@ class Branch {
 
   getName() {
     return this.name;
+  }
+}
+
+class User {
+  private login: string;
+  private id: BigInteger;
+  private url: string;
+
+  constructor(login: string, id: BigInteger, url: string) {
+    this.login = login;
+    this.id = id;
+    this.url = url;
+  }
+
+  getLogin() {
+    return this.login;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getUrl() {
+    return this.url;
   }
 }
