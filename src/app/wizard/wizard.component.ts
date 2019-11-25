@@ -19,6 +19,7 @@ export class WizardComponent implements OnInit {
   thirdStep = false;
   Accordion = false; //Controlls the Expansion of the Accordion
   progress = true;
+  checkbutton = true;
 
   repos;
   branches;
@@ -38,6 +39,7 @@ export class WizardComponent implements OnInit {
     this.repos = null;
     this.repositoryURL = null;
     this.URL = null;
+    this.checkbutton = true;
   }
 
   softReset() {
@@ -116,6 +118,17 @@ export class WizardComponent implements OnInit {
       this.Accordion = false;
     }
     */
+   if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
+    if(this.repositoryURL.startsWith("github.com/")) {
+      this.checkbutton = false;
+    } else if(this.repositoryURL.startsWith("https://github.com/")) {
+      this.checkbutton = false;
+    } else {
+      this.checkbutton = true;
+    }
+  }
+
+
   }
 
   

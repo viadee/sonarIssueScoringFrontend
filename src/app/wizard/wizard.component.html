@@ -13,7 +13,7 @@
         <mat-form-field>
           <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
         </mat-form-field>
-        <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()">Check Connection</button>
+        <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
        
       <br><br>
       <mat-form-field>
