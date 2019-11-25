@@ -4,8 +4,11 @@
         <div class="tabContent">
         <mat-form-field>
             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required>
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hardReset();">
+              <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
-        <button mat-raised-button style="margin-left: 16px;">Reset</button>
+        <button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>
         <br><br>
         <mat-form-field>
           <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
@@ -18,7 +21,7 @@
     </mat-form-field>
     <br><br>
         <div class="mat-accordion">
-        <mat-accordion>
+        <mat-accordion *ngIf="Accordion">
                 <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
                     <!--
                   <mat-expansion-panel-header>

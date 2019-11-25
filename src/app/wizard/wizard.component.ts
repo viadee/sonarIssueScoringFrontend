@@ -28,7 +28,32 @@ export class WizardComponent implements OnInit {
   ngOnInit() {
   }
 
+  hardReset() {
+    this.firstStep = false;
+    this.secondStep = false;
+    this.thirdStep = false;
+    this.Accordion = false;
+    this.branches = null;
+    this.authUsername = null;
+    this.repos = null;
+    this.repositoryURL = null;
+    this.URL = null;
+  }
+
+  softReset() {
+    this.firstStep = false;
+    this.secondStep = false;
+    this.thirdStep = false;
+    this.Accordion = false;
+    this.branches = null;
+    this.authUsername = null;
+    this.repos = null;
+    this.URL = null;
+  }
+
   onConnectToGithub() {
+
+    this.branches = null;
 
     if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
       if(this.repositoryURL.startsWith("github.com/")) {

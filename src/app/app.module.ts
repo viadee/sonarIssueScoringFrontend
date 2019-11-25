@@ -21,7 +21,8 @@ import {
   MatStepperModule,
   MatExpansionModule,
   MatRadioModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatIconModule
 } from "@angular/material";
 
 
@@ -47,7 +48,8 @@ import {
     MatStepperModule,
     MatExpansionModule,
     MatRadioModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
