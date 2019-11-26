@@ -23,16 +23,15 @@
         <div class="mat-accordion">
         <mat-accordion *ngIf="Accordion">
                 <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
-                    <!--
+
                   <mat-expansion-panel-header>
                     <mat-panel-title>
-                      Login
+                      Branches
                     </mat-panel-title>
                     <mat-panel-description>
-                        {{loginAccordion ? '' : 'You can Login, if you enter the URL'}}
+                        <!--{{loginAccordion ? '' : 'You can Login, if you enter the URL'}}-->
                     </mat-panel-description>
                   </mat-expansion-panel-header>
-                  -->
                   <!--<app-login-form></app-login-form>-->
                   <mat-spinner Indeterminate *ngIf="progress" style="margin-top: 16px;" diameter="32"></mat-spinner>
                   <mat-radio-group>
