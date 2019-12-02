@@ -56,6 +56,7 @@ export class WizardComponent implements OnInit {
   onConnectToGithub() {
 
     this.branches = null;
+    
 
     if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
       if(this.repositoryURL.startsWith("github.com/")) {
@@ -70,9 +71,9 @@ export class WizardComponent implements OnInit {
         this.progress = true;
         this.Accordion = true;
       }
-
+      /*
       this.http
-      .get("/api/server/git-repo?username=" + this.authUsername)
+      .get("/server/git-repo/public?username=" + this.authUsername)
       .subscribe(repos => {
         this.repos = repos;
 
@@ -81,7 +82,15 @@ export class WizardComponent implements OnInit {
             this.branches = this.repos[i].branches;
           }
         }
+        */
+       
+        this.URL = this.URL.substr((this.authUsername.length+1), this.URL.length);
+        console.log(this.URL);
 
+       this.http
+       .get("http://localhost:3000/server/git-repo/public/branches?username=" + this.authUsername +  "&repo=" + this.URL)
+       .subscribe(branches => {
+         this.branches = branches;
 
         this.progress = false;
         if(this.branches!=null) {
@@ -92,32 +101,12 @@ export class WizardComponent implements OnInit {
         }
       });
     }
-    /*
-    this.http
-      .get("/api/server/git-repo?username=" + this.authUsername)
-      .subscribe(repos => {
-        this.repos = repos;
-        this.branches = this.repos[0].branches;
-        var i; 
-        for(i in this.repos[0].branches) {
-          console.log(this.repos[0].branches[i].name);
-        }
-      });
-      */
+   
   } 
   
 
 
   OnInput(event: any) {
-    /*
-    if((event.target.value) != null || (event.target.value) != "") {
-      this.firstStep = true;
-      this.Accordion = true;
-    } else {
-      this.firstStep = false;
-      this.Accordion = false;
-    }
-    */
    if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
     if(this.repositoryURL.startsWith("github.com/")) {
       this.checkbutton = false;

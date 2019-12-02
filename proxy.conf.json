@@ -4,6 +4,6 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": { "^/api": "http://localhost:3000/api" }
+    "pathRewrite": { "^/server": "http://localhost:3000/server" }
   }
 }
