@@ -56,18 +56,18 @@ export class WizardComponent implements OnInit {
   onConnectToGithub() {
 
     this.branches = null;
-    
 
-    if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
-      if(this.repositoryURL.startsWith("github.com/")) {
+
+    if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
+      if (this.repositoryURL.startsWith('github.com/')) {
         this.URL = this.repositoryURL.substr(11, this.repositoryURL.length);
-      } else if(this.repositoryURL.startsWith("https://github.com/")) {
+      } else if (this.repositoryURL.startsWith('https://github.com/')) {
         this.URL = this.repositoryURL.substr(19, this.repositoryURL.length);
       } else {
         this.URL = null;
       }
 
-      if(this.URL != null) {
+      if (this.URL != null) {
         this.progress = true;
         this.Accordion = true;
       }
@@ -83,46 +83,36 @@ export class WizardComponent implements OnInit {
           }
         }
         */
-       
-        this.URL = this.URL.substr((this.authUsername.length+1), this.URL.length);
-        console.log(this.URL);
 
-       this.http
-       .get("http://localhost:3000/server/git-repo/public/branches?username=" + this.authUsername +  "&repo=" + this.URL)
+      this.URL = this.URL.substr((this.authUsername.length + 1), this.URL.length);
+      console.log(this.URL);
+
+      this.http
+       .get('http://localhost:3000/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
        .subscribe(branches => {
-         this.branches = branches;
+          this.branches = branches;
+          this.progress = false;
 
-        this.progress = false;
-        if(this.branches!=null) {
+          if (this.branches != null) {
 
-          this.Accordion = true;
-        } else {
-          this.Accordion = false;
-        }
-      });
+            this.Accordion = true;
+          } else {
+            this.Accordion = false;
+          }
+        });
     }
-   
-  } 
-  
 
+  }
 
   OnInput(event: any) {
-   if((this.repositoryURL!= null && this.authUsername!=null) || (this.repositoryURL!="" && this.authUsername!="")) {
-    if(this.repositoryURL.startsWith("github.com/")) {
-      this.checkbutton = false;
-    } else if(this.repositoryURL.startsWith("https://github.com/")) {
-      this.checkbutton = false;
-    } else {
-      this.checkbutton = true;
+    if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
+      if (this.repositoryURL.startsWith('github.com/')) {
+        this.checkbutton = false;
+      } else if (this.repositoryURL.startsWith('https://github.com/')) {
+        this.checkbutton = false;
+      } else {
+        this.checkbutton = true;
+      }
     }
   }
-
-
-  }
-
-  
-  
-
-
-
 }

@@ -17,34 +17,25 @@ export class LoginFormComponent implements OnInit {
   repos;
   branches;
 
-
-  
-
   ngOnInit() {
-    
-    
-    
   }
 
   showRepo() {
     console.log(this.repos[0].branches[0].name);
-    
   }
-  
 
   onConnectToGithub() {
-    
     this.http
       .get("/api/server/git-repo?username=" + this.authUsername)
       .subscribe(repos => {
         this.repos = repos;
         this.branches = this.repos[0].branches;
-        var i; 
-        for(i in this.repos[0].branches) {
+        var i;
+        for (i in this.repos[0].branches) {
           console.log(this.repos[0].branches[i].name);
         }
       });
-  } 
+  }
 }
 
 class Repository {
@@ -53,7 +44,7 @@ class Repository {
   private full_name: string;
   private owner: User;
   private branches: Branch[];
-  
+
 
   constructor(id: number, name: string, full_name: string, owner: User, branches:Branch[]) {
     this.id = id;
