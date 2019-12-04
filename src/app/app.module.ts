@@ -22,7 +22,8 @@ import {
   MatExpansionModule,
   MatRadioModule,
   MatProgressSpinnerModule,
-  MatIconModule
+  MatIconModule,
+  MatCheckboxModule
 } from "@angular/material";
 
 
@@ -49,7 +50,8 @@ import {
     MatExpansionModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

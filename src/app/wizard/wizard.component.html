@@ -1,96 +1,114 @@
+
+
 <mat-horizontal-stepper>
-  <mat-step label="Repository" [completed]="firstStep">
-     <div class="tabContent">
-        <mat-form-field>
-           <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required>
-           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hardReset();">
-              <mat-icon>close</mat-icon>
-           </button>
-        </mat-form-field>
-        <button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>
+    <mat-step label="Repository" [completed]="firstStep">
+       <div class="tabContent">
+          <mat-form-field>
+             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required>
+             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hardReset();">
+                <mat-icon>close</mat-icon>
+             </button>
+          </mat-form-field>
+          <button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>
+          <br><br>
+          <mat-form-field>
+             <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
+          </mat-form-field>
+          <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
+          <br><br>
+          <mat-form-field>
+             <input matInput type="password" placeholder="Password" disabled>
+          </mat-form-field>
+          <br><br>
+          <div class="mat-accordion">
+             <mat-accordion *ngIf="Accordion">
+                <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
+                   <mat-expansion-panel-header>
+                      <mat-panel-title>
+                         Branches
+                      </mat-panel-title>
+                      <mat-panel-description>
+                         <!--{{loginAccordion ? '' : 'You can Login, if you enter the URL'}}-->
+                      </mat-panel-description>
+                   </mat-expansion-panel-header>
+                   <!--<app-login-form></app-login-form>-->
+                   <mat-spinner Indeterminate *ngIf="progress" style="margin-top: 16px;" diameter="32"></mat-spinner>
+                   <mat-radio-group>
+                      <div *ngFor="let branch of branches">
+                         <br>
+                         <mat-radio-button>
+                            {{branch.name}}
+                         </mat-radio-button>
+                         <br>
+                      </div>
+                   </mat-radio-group>
+                </mat-expansion-panel>
+             </mat-accordion>
+          </div>
+       </div>
+       <button mat-raised-button matStepperNext [disabled]="!firstStep">Next</button>
+    </mat-step>
+    <mat-step label="Cluster Config" [completed]="secondStep">
+       <div class="cluster-config">
+          <mat-form-field>
+             <input matInput placeholder="H2O URL" required>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>
+       </div>
+    </mat-step>
+    <mat-step label="Analysis Config" [completed]="thirdStep">
+       <div class="analysis-config">
+          <div class="tabContent">
+             <mat-form-field>
+                <input matInput type="number" placeholder="Prediction Horizon" pattern="[0-9]+" required>
+             </mat-form-field>
+             <br>
+             <mat-checkbox>Prefix</mat-checkbox>
+             <br>
+             <mat-checkbox>Postfix</mat-checkbox>
+             <br>
+             <mat-checkbox>Lines of Code</mat-checkbox>
+             <br>
+          </div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float:right;">Start Analysis</button>
+       </div>
+    </mat-step>
+ </mat-horizontal-stepper>
+ <!--Old version with tabs (will be removed later)
+    <mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value"
+                    (selectedChangeIndex)="selected.setValue($event)">
+    <mat-tab label="Repository Config">
+    <div class="tabContent">
+        <span>Please enter all informations aboute your Repository (Subversion or Git)</span>
         <br><br>
         <mat-form-field>
-           <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
+            <input matInput placeholder="Repository URL" type="text" [(ngModel)] ="repo" (keyup)="OnInput($event)">
         </mat-form-field>
-        <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
-        <br><br>
-        <mat-form-field>
-           <input matInput type="password" placeholder="Password" disabled>
-        </mat-form-field>
-        <br><br>
-        <div class="mat-accordion">
-           <mat-accordion *ngIf="Accordion">
-              <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
-                 <mat-expansion-panel-header>
-                    <mat-panel-title>
-                       Branches
-                    </mat-panel-title>
-                    <mat-panel-description>
-                       <!--{{loginAccordion ? '' : 'You can Login, if you enter the URL'}}-->
-                    </mat-panel-description>
-                 </mat-expansion-panel-header>
-                 <!--<app-login-form></app-login-form>-->
-                 <mat-spinner Indeterminate *ngIf="progress" style="margin-top: 16px;" diameter="32"></mat-spinner>
-                 <mat-radio-group>
-                    <div *ngFor="let branch of branches">
-                       <br>
-                       <mat-radio-button>
-                          {{branch.name}}
-                       </mat-radio-button>
-                       <br>
-                    </div>
-                 </mat-radio-group>
-              </mat-expansion-panel>
-           </mat-accordion>
-        </div>
-     </div>
-     <button mat-raised-button matStepperNext [disabled]="!firstStep">Next</button>
-  </mat-step>
-  <mat-step label="Cluster Config" [completed]="secondStep">
-     <input type="radio" value="Male" name="Male"> Male
-     <button mat-raised-button matStepperPrevious>Back</button>
-     <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>
-  </mat-step>
-  <mat-step label="Analysis Config" [completed]="thirdStep">
-    <div class="analysis-config">
-      
-      <button mat-raised-button matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" style="float:right;">Start Analysis</button>
+
+
+        <app-login-form style="margin-top: 16px;"></app-login-form>
+        <br>
+        <button mat-raised-button>Next</button>
     </div>
-  </mat-step>
-</mat-horizontal-stepper>
-<!--Old version with tabs (will be removed later)
-  <mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value"
-                  (selectedChangeIndex)="selected.setValue($event)">
-  <mat-tab label="Repository Config">
-  <div class="tabContent">
-      <span>Please enter all informations aboute your Repository (Subversion or Git)</span>
-      <br><br>
-      <mat-form-field>
-          <input matInput placeholder="Repository URL" type="text" [(ngModel)] ="repo" (keyup)="OnInput($event)">
-      </mat-form-field>
 
 
-      <app-login-form style="margin-top: 16px;"></app-login-form>
-      <br>
-      <button mat-raised-button>Next</button>
-  </div>
+    </mat-tab>
+
+    <mat-tab label="Cluster Config">
 
 
-  </mat-tab>
+    </mat-tab>
 
-  <mat-tab label="Cluster Config">
-
-
-  </mat-tab>
-
-  <mat-tab label="Analysis Config" disabled=true>
+    <mat-tab label="Analysis Config" disabled=true>
 
 
-  </mat-tab>
+    </mat-tab>
 
 
 
-  </mat-tab-group>
-  -->
+    </mat-tab-group>
+    -->
 
