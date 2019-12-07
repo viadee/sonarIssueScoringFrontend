@@ -57,7 +57,6 @@ export class WizardComponent implements OnInit {
 
     this.branches = null;
 
-
     if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
       if (this.repositoryURL.startsWith('github.com/')) {
         this.URL = this.repositoryURL.substr(11, this.repositoryURL.length);
@@ -85,20 +84,15 @@ export class WizardComponent implements OnInit {
         */
 
       this.URL = this.URL.substr((this.authUsername.length + 1), this.URL.length);
-      console.log(this.URL);
+      console.log("Try to connect to " + this.URL + " Repository");
 
       this.http
        .get('http://localhost:3000/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
        .subscribe(branches => {
           this.branches = branches;
+        }, error => {
           this.progress = false;
-
-          if (this.branches != null) {
-
-            this.Accordion = true;
-          } else {
-            this.Accordion = false;
-          }
+          this.firstStep = false;
         });
     }
 
@@ -114,5 +108,6 @@ export class WizardComponent implements OnInit {
         this.checkbutton = true;
       }
     }
+    console.log(this.repositoryURL);
   }
 }

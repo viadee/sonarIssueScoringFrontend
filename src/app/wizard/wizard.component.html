@@ -4,15 +4,15 @@
     <mat-step label="Repository" [completed]="firstStep">
        <div class="tabContent">
           <mat-form-field>
-             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required>
+             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required [disabled]="firstStep">
              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hardReset();">
                 <mat-icon>close</mat-icon>
              </button>
           </mat-form-field>
-          <button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>
+          <!--<button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>-->
           <br><br>
           <mat-form-field>
-             <input matInput [(ngModel)]="authUsername" placeholder="Username" required>
+             <input matInput [(ngModel)]="authUsername" placeholder="Username" (keyup)="OnInput($event2)" required [disabled]="firstStep">
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>
@@ -27,8 +27,9 @@
                       <mat-panel-title>
                          Branches
                       </mat-panel-title>
-                      <mat-panel-description>
+                      <mat-panel-description *ngIf="!progress">
                          <!--{{loginAccordion ? '' : 'You can Login, if you enter the URL'}}-->
+                         Keine Verbindung zum Repository
                       </mat-panel-description>
                    </mat-expansion-panel-header>
                    <!--<app-login-form></app-login-form>-->
