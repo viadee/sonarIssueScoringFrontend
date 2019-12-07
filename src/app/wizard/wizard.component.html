@@ -4,14 +4,14 @@
     <mat-step label="Repository" [completed]="firstStep">
        <div class="tabContent">
           <mat-form-field>
-             <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required [disabled]="firstStep">
+             <input matInput placeholder="Source Path / URL" (keyup)="OnInputRepository($event)" [(ngModel)]="repositoryURL" required [disabled]="firstStep">
              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="Reset();">
                 <mat-icon>close</mat-icon>
              </button>
           </mat-form-field>
           <br><br>
           <mat-form-field>
-             <input matInput [(ngModel)]="authUsername" placeholder="Username" required [disabled]="firstStep">
+             <input matInput [(ngModel)]="authUsername" (keyup)="OnInputRepository($event)" placeholder="Username" required [disabled]="firstStep">
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>

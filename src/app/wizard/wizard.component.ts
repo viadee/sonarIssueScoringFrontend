@@ -121,8 +121,8 @@ export class WizardComponent implements OnInit {
 
   }
 
-  OnInput(event: any) {
-    if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
+  OnInputRepository(event: any) {
+    if ((this.repositoryURL != null && this.repositoryURL != "") && (this.authUsername != null && this.authUsername != '')) {
       if (this.repositoryURL.startsWith('github.com/')) {
         this.checkbutton = false;
       } else if (this.repositoryURL.startsWith('https://github.com/')) {
@@ -130,6 +130,8 @@ export class WizardComponent implements OnInit {
       } else {
         this.checkbutton = true;
       }
+    } else {
+      this.checkbutton = true;
     }
   }
 
