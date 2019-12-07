@@ -12,7 +12,7 @@
           <!--<button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>-->
           <br><br>
           <mat-form-field>
-             <input matInput [(ngModel)]="authUsername" placeholder="Username" (keyup)="OnInput($event2)" required [disabled]="firstStep">
+             <input matInput [(ngModel)]="authUsername" placeholder="Username" required [disabled]="firstStep">
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>

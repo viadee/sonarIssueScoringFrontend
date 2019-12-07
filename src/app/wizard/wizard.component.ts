@@ -108,6 +108,5 @@ export class WizardComponent implements OnInit {
         this.checkbutton = true;
       }
     }
-    console.log(this.repositoryURL);
   }
 }
