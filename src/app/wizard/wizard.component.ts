@@ -11,22 +11,33 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'; //
   styleUrls: ['./wizard.component.scss']
 })
 export class WizardComponent implements OnInit {
-  repositoryURL : string;
-  URL : string;
-  authUsername : string;
+
   firstStep = false;
   secondStep = false;
   thirdStep = false;
+
+  //Step 1 (Repository)
+
+  repositoryURL : string;
+  URL : string;
+  authUsername : string;
   Accordion = false; //Controlls the visability of the Accordion
   AccordionExpansion = false; //Controlls the Expansion of the Accordion
   progress = true;
   checkbutton = true;
   activeBranch : string;
   errorHTTP = false;
-  
 
   repos;
   branches;
+
+  //Step 2 (Cluster Config)
+  H2O : string;
+  Port : number;
+  
+  //Step 3 (Analysis Config)
+
+  
 
   constructor(private http: HttpClient) {}
 
@@ -39,6 +50,8 @@ export class WizardComponent implements OnInit {
       {"name":"HEAD"}
   ];
   }
+
+  //Functions for Step 1 (Repository)
 
   Reset() {
     this.firstStep = false;
@@ -121,16 +134,27 @@ export class WizardComponent implements OnInit {
   }
 
   chooseBranch() {
-    console.log(this.activeBranch);
     this.firstStep = true;
   }
+
+  //Functions for Step 2 (Cluster Config)
+
+  OnInputCluster() {
+    if((this.H2O != null && this.H2O != "") && this.Port != null) {
+      this.secondStep = true;
+    } else {
+      this.secondStep = false;
+    }
+  }
+
+  //Functions for Step 3 (Analysis Config)
 
   showcase() {
     console.log("The analysis will start with:");
     console.log("Repository URL: " + this.URL);
     console.log("User: " + this.authUsername);
     console.log("Branch: " + this.activeBranch);
-    console.log("H²O URL: ");
+    console.log("H²O URL: " + this.H2O + ":" + this.Port);
     console.log();
   }
 

@@ -57,11 +57,11 @@
     <mat-step label="Cluster Config" [completed]="secondStep">
        <div class="cluster-config">
           <mat-form-field>
-             <input matInput placeholder="H2O URL" required>
+             <input matInput placeholder="H2O URL" [(ngModel)]="H2O" required (keyup)="OnInputCluster();">
           </mat-form-field>
           <br><br>
           <mat-form-field>
-               <input matInput type="number" placeholder="Port" required>
+               <input matInput type="number" placeholder="Port" [(ngModel)]="Port" required (keyup)="OnInputCluster();">
          </mat-form-field>
           <br>
           <button mat-raised-button matStepperPrevious>Back</button>
@@ -83,7 +83,7 @@
              <br>
           </div>
           <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" style="float:right;" (click)="showcase();">Start Analysis</button>
+          <button mat-raised-button color="primary" style="float:right;" (click)="showcase();"  [disabled]="!thirdStep">Start Analysis</button>
        </div>
     </mat-step>
  </mat-horizontal-stepper>
