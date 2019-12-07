@@ -105,7 +105,7 @@ export class WizardComponent implements OnInit {
       console.log("Try to connect to " + this.URL + " Repository");
 
       this.http
-       .get('http://localhost:3000/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
+       .get('/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
        .subscribe(branches => {
           this.branches = branches;
           this.AccordionExpansion = true;
