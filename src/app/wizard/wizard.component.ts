@@ -36,7 +36,7 @@ export class WizardComponent implements OnInit {
   Port : number;
   
   //Step 3 (Analysis Config)
-
+  Horizon : number;
   
 
   constructor(private http: HttpClient) {}
@@ -111,6 +111,8 @@ export class WizardComponent implements OnInit {
           this.AccordionExpansion = true;
           this.progress = false;
           this.errorHTTP = false;
+          this.OnInputCluster();
+          this.OnInputAnalysis();
         }, error => {
           this.progress = false;
           this.firstStep = false;
@@ -151,13 +153,26 @@ export class WizardComponent implements OnInit {
 
   //Functions for Step 3 (Analysis Config)
 
+  OnInputAnalysis() {
+    if(this.Horizon != null && this.Horizon > 0) {
+      this.thirdStep = true;
+    } else {
+      this.thirdStep = false;
+    }
+  }
+
   showcase() {
     console.log("The analysis will start with:");
     console.log("Repository URL: " + this.URL);
     console.log("User: " + this.authUsername);
     console.log("Branch: " + this.activeBranch);
     console.log("H²O URL: " + this.H2O + ":" + this.Port);
-    console.log();
+    console.log("Horizon: " + this.Horizon + " comit(s)");
+    console.log("Prefix: " + true);
+    console.log("Postfix: " + false);
+    console.log("Lines of Code: " + false);
   }
+
+  
 
 }

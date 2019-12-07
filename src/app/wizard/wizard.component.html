@@ -52,7 +52,7 @@
              </mat-accordion>
           </div>
        </div>
-       <button mat-raised-button matStepperNext [disabled]="!firstStep">Next</button>
+       <button mat-raised-button matStepperNext [disabled]="!firstStep" (click)="OnInputCluster(); OnInputAnalysis();">Next</button>
     </mat-step>
     <mat-step label="Cluster Config" [completed]="secondStep">
        <div class="cluster-config">
@@ -65,14 +65,14 @@
          </mat-form-field>
           <br>
           <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>
+          <button mat-raised-button matStepperNext [disabled]="!secondStep" (click)="OnInputAnalysis();">Next</button>
        </div>
     </mat-step>
     <mat-step label="Analysis Config" [completed]="thirdStep">
        <div class="analysis-config">
           <div class="tabContent">
              <mat-form-field>
-                <input matInput type="number" placeholder="Prediction Horizon" pattern="[0-9]+" required>
+                <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="Horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
              </mat-form-field>
              <br>
              <mat-checkbox>Prefix</mat-checkbox>
