@@ -11,15 +11,19 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'; //
   styleUrls: ['./wizard.component.scss']
 })
 export class WizardComponent implements OnInit {
-  repositoryURL: string;
-  URL: string;
-  authUsername: string;
+  repositoryURL : string;
+  URL : string;
+  authUsername : string;
   firstStep = false;
   secondStep = false;
   thirdStep = false;
-  Accordion = false; //Controlls the Expansion of the Accordion
+  Accordion = false; //Controlls the visability of the Accordion
+  AccordionExpansion = false; //Controlls the Expansion of the Accordion
   progress = true;
   checkbutton = true;
+  activeBranch : string;
+  errorHTTP = false;
+  
 
   repos;
   branches;
@@ -27,35 +31,36 @@ export class WizardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+
+    //This Array is only for testing-purpose
+    this.branches = [
+      {"name":"master"},
+      {"name":"test"},
+      {"name":"HEAD"}
+  ];
   }
 
-  hardReset() {
+  Reset() {
     this.firstStep = false;
     this.secondStep = false;
     this.thirdStep = false;
     this.Accordion = false;
+    this.AccordionExpansion = false;
     this.branches = null;
     this.authUsername = null;
     this.repos = null;
     this.repositoryURL = null;
     this.URL = null;
     this.checkbutton = true;
+    this.activeBranch = null;
+    this.errorHTTP = false;
   }
 
-  softReset() {
-    this.firstStep = false;
-    this.secondStep = false;
-    this.thirdStep = false;
-    this.Accordion = false;
-    this.branches = null;
-    this.authUsername = null;
-    this.repos = null;
-    this.URL = null;
-  }
 
   onConnectToGithub() {
 
     this.branches = null;
+    this.activeBranch = null;
 
     if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
       if (this.repositoryURL.startsWith('github.com/')) {
@@ -90,9 +95,14 @@ export class WizardComponent implements OnInit {
        .get('http://localhost:3000/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
        .subscribe(branches => {
           this.branches = branches;
+          this.AccordionExpansion = true;
+          this.progress = false;
+          this.errorHTTP = false;
         }, error => {
           this.progress = false;
           this.firstStep = false;
+          this.AccordionExpansion = false;
+          this.errorHTTP = true;
         });
     }
 
@@ -109,4 +119,19 @@ export class WizardComponent implements OnInit {
       }
     }
   }
+
+  chooseBranch() {
+    console.log(this.activeBranch);
+    this.firstStep = true;
+  }
+
+  showcase() {
+    console.log("The analysis will start with:");
+    console.log("Repository URL: " + this.URL);
+    console.log("User: " + this.authUsername);
+    console.log("Branch: " + this.activeBranch);
+    console.log("H²O URL: ");
+    console.log();
+  }
+
 }

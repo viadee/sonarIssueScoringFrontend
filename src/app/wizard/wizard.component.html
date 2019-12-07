@@ -5,39 +5,44 @@
        <div class="tabContent">
           <mat-form-field>
              <input matInput placeholder="Source Path / URL" (keyup)="OnInput($event)" [(ngModel)]="repositoryURL" required [disabled]="firstStep">
-             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hardReset();">
+             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="Reset();">
                 <mat-icon>close</mat-icon>
              </button>
           </mat-form-field>
-          <!--<button mat-raised-button style="margin-left: 16px;" (click)="softReset();">Reset</button>-->
           <br><br>
           <mat-form-field>
              <input matInput [(ngModel)]="authUsername" placeholder="Username" required [disabled]="firstStep">
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>
+          <!--
           <mat-form-field>
              <input matInput type="password" placeholder="Password" disabled>
           </mat-form-field>
           <br><br>
+         -->
           <div class="mat-accordion">
              <mat-accordion *ngIf="Accordion">
-                <mat-expansion-panel disabled hideToggle [expanded]="Accordion">
+                <mat-expansion-panel disabled hideToggle [expanded]="AccordionExpansion">
                    <mat-expansion-panel-header>
                       <mat-panel-title>
                          Branches
                       </mat-panel-title>
-                      <mat-panel-description *ngIf="!progress">
-                         <!--{{loginAccordion ? '' : 'You can Login, if you enter the URL'}}-->
-                         Keine Verbindung zum Repository
+                      <mat-panel-description>
+                         <div *ngIf="progress">
+                              <mat-spinner Indeterminate *ngIf="progress" diameter="32"></mat-spinner>
+                         </div>
+                         <div *ngIf="!progress">
+                         {{errorHTTP ? 'Can not connect to repository' : 'Please choose a branch'}}
+                        </div>
+                         
                       </mat-panel-description>
                    </mat-expansion-panel-header>
                    <!--<app-login-form></app-login-form>-->
-                   <mat-spinner Indeterminate *ngIf="progress" style="margin-top: 16px;" diameter="32"></mat-spinner>
-                   <mat-radio-group>
+                   <mat-radio-group [(ngModel)]="activeBranch" (click)="chooseBranch();">
                       <div *ngFor="let branch of branches">
                          <br>
-                         <mat-radio-button>
+                         <mat-radio-button value="{{branch.name}}">
                             {{branch.name}}
                          </mat-radio-button>
                          <br>
@@ -54,6 +59,10 @@
           <mat-form-field>
              <input matInput placeholder="H2O URL" required>
           </mat-form-field>
+          <br><br>
+          <mat-form-field>
+               <input matInput type="number" placeholder="Port" required>
+         </mat-form-field>
           <br>
           <button mat-raised-button matStepperPrevious>Back</button>
           <button mat-raised-button matStepperNext [disabled]="!secondStep">Next</button>
@@ -74,7 +83,7 @@
              <br>
           </div>
           <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" style="float:right;">Start Analysis</button>
+          <button mat-raised-button color="primary" style="float:right;" (click)="showcase();">Start Analysis</button>
        </div>
     </mat-step>
  </mat-horizontal-stepper>
