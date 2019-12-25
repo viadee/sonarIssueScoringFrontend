@@ -161,7 +161,7 @@ export class WizardComponent implements OnInit {
     }
   }
 
-  showcase() {
+  commitToBackend() {
     console.log("The analysis will start with:");
     console.log("Repository URL: " + this.URL);
     console.log("User: " + this.authUsername);
@@ -172,7 +172,5 @@ export class WizardComponent implements OnInit {
     console.log("Postfix: " + false);
     console.log("Lines of Code: " + false);
   }
-
-  
 
 }

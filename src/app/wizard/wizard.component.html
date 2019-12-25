@@ -1,6 +1,6 @@
 
 
-<mat-horizontal-stepper>
+<mat-horizontal-stepper linear>
     <mat-step label="Repository" [completed]="firstStep">
        <div class="tabContent">
           <mat-form-field>
@@ -15,12 +15,13 @@
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>
-          <!--
+          
           <mat-form-field>
-             <input matInput type="password" placeholder="Password" disabled>
+             <input matInput type="password" placeholder="Password"  [disabled]="firstStep">
           </mat-form-field>
+          
           <br><br>
-         -->
+         
           <div class="mat-accordion">
              <mat-accordion *ngIf="Accordion">
                 <mat-expansion-panel disabled hideToggle [expanded]="AccordionExpansion">
@@ -75,50 +76,31 @@
                 <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="Horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
              </mat-form-field>
              <br>
-             <mat-checkbox>Prefix</mat-checkbox>
+             <mat-checkbox>Filename-Prefix</mat-checkbox>
              <br>
-             <mat-checkbox>Postfix</mat-checkbox>
+             <mat-checkbox>Filename-Postfix</mat-checkbox>
+             <br>
+             <mat-checkbox>Package</mat-checkbox>
+             <br>
+             <mat-checkbox>Dependencies (internal)</mat-checkbox>
+             <br>
+             <mat-checkbox>Dependencies (external)</mat-checkbox>
+             <br>
+             <mat-checkbox>Cyclomatic Complexity</mat-checkbox>
              <br>
              <mat-checkbox>Lines of Code</mat-checkbox>
              <br>
+             <mat-checkbox>Author</mat-checkbox>
+             <br>
+             <mat-checkbox>Number of Comments</mat-checkbox>
+             <br>
+             <mat-checkbox>Weekday</mat-checkbox>
+             <br>
           </div>
           <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" style="float:right;" (click)="showcase();"  [disabled]="!thirdStep">Start Analysis</button>
+          <button mat-raised-button color="primary" style="float:right;" (click)="commitToBackend();"  [disabled]="!thirdStep">Start Analysis</button>
        </div>
     </mat-step>
  </mat-horizontal-stepper>
- <!--Old version with tabs (will be removed later)
-    <mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value"
-                    (selectedChangeIndex)="selected.setValue($event)">
-    <mat-tab label="Repository Config">
-    <div class="tabContent">
-        <span>Please enter all informations aboute your Repository (Subversion or Git)</span>
-        <br><br>
-        <mat-form-field>
-            <input matInput placeholder="Repository URL" type="text" [(ngModel)] ="repo" (keyup)="OnInput($event)">
-        </mat-form-field>
-
-
-        <app-login-form style="margin-top: 16px;"></app-login-form>
-        <br>
-        <button mat-raised-button>Next</button>
-    </div>
-
-
-    </mat-tab>
-
-    <mat-tab label="Cluster Config">
-
-
-    </mat-tab>
-
-    <mat-tab label="Analysis Config" disabled=true>
-
-
-    </mat-tab>
-
-
-
-    </mat-tab-group>
-    -->
+ 
 
