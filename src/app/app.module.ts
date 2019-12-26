@@ -27,6 +27,8 @@ import {
 } from "@angular/material";
 import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginFormComponent,
     DashboardItemComponent,
     FooterComponent,
+    HomepageComponent,
+    AnalysisComponent,
     //WizardComponent
   ],
   imports: [

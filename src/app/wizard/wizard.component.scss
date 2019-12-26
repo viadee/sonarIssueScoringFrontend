@@ -1,37 +1,42 @@
 mat-tab-group {
-    margin: auto;
-    max-width: 1280px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    min-height: 75%;
+  margin: auto;
+  max-width: 1280px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-height: 75%;
 }
 
 mat-horizontal-stepper {
-    margin: auto;
-    max-width: 1280px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    min-height: 75%;
+  margin: auto;
+  max-width: 1280px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-height: 75%;
 }
 
 .tabContent {
-    padding: 16px;
+  padding: 16px;
 }
 
 mat-form-field {
-    min-width: 100px;
-    max-width: 500px;
-    width: 100%;
+  min-width: 100px;
+  max-width: 500px;
+  width: 100%;
 }
 
 mat-accordion {
-    //max-width: 340px;
-    max-width: 470px;
+  //max-width: 340px;
+  max-width: 470px;
 }
 
 div.mat-accordion {
-    //max-width: 370px;
-    max-width: 500px;
+  //max-width: 370px;
+  max-width: 500px;
 }
 
 button {
-    margin-right: 12px;
+  margin-right: 12px;
+}
+
+.mat-step-icon-selected {
+  background-color: #ffcf6b;
+  color: black;
 }
