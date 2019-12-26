@@ -25,6 +25,8 @@ import {
   MatIconModule,
   MatCheckboxModule
 } from "@angular/material";
+import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import {
     routingComponents,
     NavbarComponent,
     LoginFormComponent,
+    DashboardItemComponent,
+    FooterComponent,
     //WizardComponent
   ],
   imports: [
