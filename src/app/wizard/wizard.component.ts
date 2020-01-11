@@ -48,7 +48,7 @@ export class WizardComponent implements OnInit {
     checkAuthor = false;
     checkComments = false;
     checkWeekday = false;
-  
+  variab : number;
 
   constructor(private http: HttpClient) {}
 
@@ -97,6 +97,7 @@ export class WizardComponent implements OnInit {
     this.activeBranch = null;
 
     if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
+      /*
       if (this.repositoryURL.startsWith('github.com/')) {
         this.URL = this.repositoryURL.substr(11, this.repositoryURL.length);
       } else if (this.repositoryURL.startsWith('https://github.com/')) {
@@ -104,6 +105,20 @@ export class WizardComponent implements OnInit {
       } else {
         this.URL = null;
       }
+      */
+
+      if(this.repositoryURL.startsWith('http://') || this.repositoryURL.startsWith('https://')) {
+
+        if(this.repositoryURL.includes('.com/')) {
+          this.URL = this.repositoryURL.substring(((this.repositoryURL.indexOf('.com/'))+5), this.repositoryURL.length);
+        } else {
+          this.URL = null;
+        }
+        
+      } else {
+        this.URL = null;
+      }
+      
 
       if (this.URL != null) {
         this.progress = true;
@@ -146,9 +161,9 @@ export class WizardComponent implements OnInit {
 
   OnInputRepository(event: any) {
     if ((this.repositoryURL != null && this.repositoryURL != "") && (this.authUsername != null && this.authUsername != '')) {
-      if (this.repositoryURL.startsWith('github.com/')) {
+      if (this.repositoryURL.startsWith('http://') && this.repositoryURL.includes('.com/')) {
         this.checkbutton = false;
-      } else if (this.repositoryURL.startsWith('https://github.com/')) {
+      } else if (this.repositoryURL.startsWith('https://') && this.repositoryURL.includes('.com/')) {
         this.checkbutton = false;
       } else {
         this.checkbutton = true;
