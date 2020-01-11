@@ -23,7 +23,8 @@ import {
   MatRadioModule,
   MatProgressSpinnerModule,
   MatIconModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSnackBarModule
 } from "@angular/material";
 import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
 import { FooterComponent } from './footer/footer.component';
@@ -59,7 +60,8 @@ import { AnalysisComponent } from './analysis/analysis.component';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

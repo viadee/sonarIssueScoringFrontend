@@ -3,7 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import {FormControl} from '@angular/forms';
 import { RepositionScrollStrategy } from '@angular/cdk/overlay';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms'; //
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wizard',
@@ -48,9 +50,8 @@ export class WizardComponent implements OnInit {
     checkAuthor = false;
     checkComments = false;
     checkWeekday = false;
-  variab : number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) {}
 
   ngOnInit() {
 
@@ -198,6 +199,10 @@ export class WizardComponent implements OnInit {
   }
 
   commitToBackend() {
+
+    this.snackBar.open('Added to queque', '', {duration: 4000});
+    this.router.navigate(['/dashboard']);
+
     console.log("The analysis will start with:");
     console.log("Repository URL: " + this.URL);
     console.log("User: " + this.authUsername);
