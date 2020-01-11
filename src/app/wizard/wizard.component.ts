@@ -37,6 +37,17 @@ export class WizardComponent implements OnInit {
   
   //Step 3 (Analysis Config)
   Horizon : number;
+    //Checkboxes
+    checkFilenamePrefix = false;
+    checkFilenamePostfix = false;
+    checkPackage = false;
+    checkDependenciesExternal = false;
+    checkDependenciesInternal = false;
+    checkComplexity = false;
+    checkLines = false;
+    checkAuthor = false;
+    checkComments = false;
+    checkWeekday = false;
   
 
   constructor(private http: HttpClient) {}
@@ -67,6 +78,16 @@ export class WizardComponent implements OnInit {
     this.checkbutton = true;
     this.activeBranch = null;
     this.errorHTTP = false;
+    this.checkFilenamePrefix = false;
+    this.checkFilenamePostfix = false;
+    this.checkPackage = false;
+    this.checkDependenciesExternal = false;
+    this.checkDependenciesInternal = false;
+    this.checkComplexity = false;
+    this.checkLines = false;
+    this.checkAuthor = false;
+    this.checkComments = false;
+    this.checkWeekday = false;
   }
 
 
@@ -168,9 +189,17 @@ export class WizardComponent implements OnInit {
     console.log("Branch: " + this.activeBranch);
     console.log("H²O URL: " + this.H2O + ":" + this.Port);
     console.log("Horizon: " + this.Horizon + " comit(s)");
-    console.log("Prefix: " + true);
-    console.log("Postfix: " + false);
-    console.log("Lines of Code: " + false);
+  
+    console.log("Filename-Prefix: " + this.checkFilenamePrefix);
+    console.log("Filename-Postfix: " + this.checkFilenamePostfix);
+    console.log("Package: " + this.checkPackage);
+    console.log("Dependencies (external): " + this.checkDependenciesExternal);
+    console.log("Dependencies (internal): " + this.checkDependenciesInternal);
+    console.log("Complexity: " + this.checkComplexity);
+    console.log("LinesOfCode: " + this.checkLines);
+    console.log("Author: " + this.checkAuthor);
+    console.log("Comments: " + this.checkComments);
+    console.log("Weekday: " + this.checkWeekday);
   }
 
 }

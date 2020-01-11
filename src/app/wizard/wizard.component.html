@@ -76,25 +76,25 @@
                 <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="Horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
              </mat-form-field>
              <br>
-             <mat-checkbox>Filename-Prefix</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkFilenamePrefix">Filename-Prefix</mat-checkbox>
              <br>
-             <mat-checkbox>Filename-Postfix</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkFilenamePostfix">Filename-Postfix</mat-checkbox>
              <br>
-             <mat-checkbox>Package</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkPackage">Package</mat-checkbox>
              <br>
-             <mat-checkbox>Dependencies (internal)</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkDependenciesExternal">Dependencies (internal)</mat-checkbox>
              <br>
-             <mat-checkbox>Dependencies (external)</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkDependenciesInternal">Dependencies (external)</mat-checkbox>
              <br>
-             <mat-checkbox>Cyclomatic Complexity</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkComplexity">Cyclomatic Complexity</mat-checkbox>
              <br>
-             <mat-checkbox>Lines of Code</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkLines">Lines of Code</mat-checkbox>
              <br>
-             <mat-checkbox>Author</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkAuthor">Author</mat-checkbox>
              <br>
-             <mat-checkbox>Number of Comments</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkComments">Number of Comments</mat-checkbox>
              <br>
-             <mat-checkbox>Weekday</mat-checkbox>
+             <mat-checkbox [(ngModel)]="checkWeekday">Weekday</mat-checkbox>
              <br>
           </div>
           <button mat-raised-button matStepperPrevious>Back</button>
