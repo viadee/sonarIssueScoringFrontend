@@ -7,7 +7,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';  //
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 //Material
 import {
