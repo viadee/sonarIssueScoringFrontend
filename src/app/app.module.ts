@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule, routingComponents } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
@@ -9,37 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-//Material
-import {
-  MatButtonModule,
-  MatTabsModule,
-  MatDialogModule,
-  MatInputModule,
-  MatStepperModule,
-  MatExpansionModule,
-  MatRadioModule,
-  MatProgressSpinnerModule,
-  MatIconModule,
-  MatCheckboxModule,
-  MatSnackBarModule
-} from '@angular/material';
-import { DashboardItemComponent } from './layout/views/dashboard-item/dashboard-item.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { HomepageComponent } from './layout/views/homepage/homepage.component';
-import { AnalysisComponent } from './layout/views/analysis/analysis.component';
-
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    //DashboardComponent,
-    routingComponents,
-    NavbarComponent,
-    DashboardItemComponent,
-    FooterComponent,
-    HomepageComponent,
-    AnalysisComponent,
-    //WizardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -47,17 +21,7 @@ import { AnalysisComponent } from './layout/views/analysis/analysis.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatStepperModule,
-    MatExpansionModule,
-    MatRadioModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatSnackBarModule
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -20,25 +20,25 @@ export class WizardComponent implements OnInit {
 
   //Step 1 (Repository)
 
-  repositoryURL : string;
-  URL : string;
-  authUsername : string;
+  repositoryURL: string;
+  URL: string;
+  authUsername: string;
   Accordion = false; //Controlls the visability of the Accordion
   AccordionExpansion = false; //Controlls the Expansion of the Accordion
   progress = true;
   checkbutton = true;
-  activeBranch : string;
+  activeBranch: string;
   errorHTTP = false;
 
   repos;
   branches;
 
   //Step 2 (Cluster Config)
-  H2O : string;
-  Port : number;
-  
+  H2O: string;
+  Port: number;
+
   //Step 3 (Analysis Config)
-  Horizon : number;
+  Horizon: number;
     //Checkboxes
     checkFilenamePrefix = false;
     checkFilenamePostfix = false;
@@ -57,10 +57,10 @@ export class WizardComponent implements OnInit {
 
     //This Array is only for testing-purpose
     this.branches = [
-      {"name":"master"},
-      {"name":"test"},
-      {"name":"HEAD"}
-  ];
+      {'name':'master'},
+      {'name':'test'},
+      {'name':'HEAD'}
+    ];
   }
 
   //Functions for Step 1 (Repository)
@@ -98,48 +98,25 @@ export class WizardComponent implements OnInit {
     this.activeBranch = null;
 
     if ((this.repositoryURL != null && this.authUsername != null) || (this.repositoryURL !== '' && this.authUsername !== '')) {
-      /*
-      if (this.repositoryURL.startsWith('github.com/')) {
-        this.URL = this.repositoryURL.substr(11, this.repositoryURL.length);
-      } else if (this.repositoryURL.startsWith('https://github.com/')) {
-        this.URL = this.repositoryURL.substr(19, this.repositoryURL.length);
-      } else {
-        this.URL = null;
-      }
-      */
+      if (this.repositoryURL.startsWith('http://') || this.repositoryURL.startsWith('https://')) {
 
-      if(this.repositoryURL.startsWith('http://') || this.repositoryURL.startsWith('https://')) {
-
-        if(this.repositoryURL.includes('.com/')) {
+        if (this.repositoryURL.includes('.com/')) {
           this.URL = this.repositoryURL.substring(((this.repositoryURL.indexOf('.com/'))+5), this.repositoryURL.length);
         } else {
           this.URL = null;
         }
-        
+
       } else {
         this.URL = null;
       }
-      
+
 
       if (this.URL != null) {
         this.progress = true;
         this.Accordion = true;
       }
-      /*
-      this.http
-      .get("/server/git-repo/public?username=" + this.authUsername)
-      .subscribe(repos => {
-        this.repos = repos;
-
-        for(var i in this.repos) {
-          if(this.repos[i].full_name == this.URL) {
-            this.branches = this.repos[i].branches;
-          }
-        }
-        */
-
       this.URL = this.URL.substr((this.authUsername.length + 1), this.URL.length);
-      console.log("Try to connect to " + this.URL + " Repository");
+      console.log('Try to connect to ' + this.URL + ' Repository');
 
       this.http
        .get('/server/git-repo/public/branches?username=' + this.authUsername +  '&repo=' + this.URL)
@@ -161,7 +138,7 @@ export class WizardComponent implements OnInit {
   }
 
   OnInputRepository(event: any) {
-    if ((this.repositoryURL != null && this.repositoryURL != "") && (this.authUsername != null && this.authUsername != '')) {
+    if ((this.repositoryURL != null && this.repositoryURL != '') && (this.authUsername != null && this.authUsername != '')) {
       if (this.repositoryURL.startsWith('http://') && this.repositoryURL.includes('.com/')) {
         this.checkbutton = false;
       } else if (this.repositoryURL.startsWith('https://') && this.repositoryURL.includes('.com/')) {
@@ -181,7 +158,7 @@ export class WizardComponent implements OnInit {
   //Functions for Step 2 (Cluster Config)
 
   OnInputCluster() {
-    if((this.H2O != null && this.H2O != "") && this.Port != null) {
+    if((this.H2O != null && this.H2O != '') && this.Port != null) {
       this.secondStep = true;
     } else {
       this.secondStep = false;
@@ -203,23 +180,23 @@ export class WizardComponent implements OnInit {
     this.snackBar.open('Added to queque', '', {duration: 4000});
     this.router.navigate(['/dashboard']);
 
-    console.log("The analysis will start with:");
-    console.log("Repository URL: " + this.URL);
-    console.log("User: " + this.authUsername);
-    console.log("Branch: " + this.activeBranch);
-    console.log("H²O URL: " + this.H2O + ":" + this.Port);
-    console.log("Horizon: " + this.Horizon + " comit(s)");
-  
-    console.log("Filename-Prefix: " + this.checkFilenamePrefix);
-    console.log("Filename-Postfix: " + this.checkFilenamePostfix);
-    console.log("Package: " + this.checkPackage);
-    console.log("Dependencies (external): " + this.checkDependenciesExternal);
-    console.log("Dependencies (internal): " + this.checkDependenciesInternal);
-    console.log("Complexity: " + this.checkComplexity);
-    console.log("LinesOfCode: " + this.checkLines);
-    console.log("Author: " + this.checkAuthor);
-    console.log("Comments: " + this.checkComments);
-    console.log("Weekday: " + this.checkWeekday);
+    console.log('The analysis will start with:');
+    console.log('Repository URL: ' + this.URL);
+    console.log('User: ' + this.authUsername);
+    console.log('Branch: ' + this.activeBranch);
+    console.log('H²O URL: ' + this.H2O + ':' + this.Port);
+    console.log('Horizon: ' + this.Horizon + ' comit(s)');
+
+    console.log('Filename-Prefix: ' + this.checkFilenamePrefix);
+    console.log('Filename-Postfix: ' + this.checkFilenamePostfix);
+    console.log('Package: ' + this.checkPackage);
+    console.log('Dependencies (external): ' + this.checkDependenciesExternal);
+    console.log('Dependencies (internal): ' + this.checkDependenciesInternal);
+    console.log('Complexity: ' + this.checkComplexity);
+    console.log('LinesOfCode: ' + this.checkLines);
+    console.log('Author: ' + this.checkAuthor);
+    console.log('Comments: ' + this.checkComments);
+    console.log('Weekday: ' + this.checkWeekday);
   }
 
 }
