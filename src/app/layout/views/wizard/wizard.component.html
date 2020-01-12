@@ -1,0 +1,106 @@
+
+
+<mat-horizontal-stepper linear>
+    <mat-step label="Repository" [completed]="firstStep">
+       <div class="tabContent">
+          <mat-form-field>
+             <input matInput placeholder="Source Path / URL" (keyup)="OnInputRepository($event)" [(ngModel)]="repositoryURL" required [disabled]="firstStep">
+             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="Reset();">
+                <mat-icon>close</mat-icon>
+             </button>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field>
+             <input matInput [(ngModel)]="authUsername" (keyup)="OnInputRepository($event)" placeholder="Username" required [disabled]="firstStep">
+          </mat-form-field>
+          <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
+          <br><br>
+          
+          <mat-form-field>
+             <input matInput type="password" placeholder="Password"  [disabled]="firstStep">
+          </mat-form-field>
+          
+          <br><br>
+         
+          <div class="mat-accordion">
+             <mat-accordion *ngIf="Accordion">
+                <mat-expansion-panel disabled hideToggle [expanded]="AccordionExpansion">
+                   <mat-expansion-panel-header>
+                      <mat-panel-title>
+                         Branches
+                      </mat-panel-title>
+                      <mat-panel-description>
+                         <div *ngIf="progress">
+                              <mat-spinner Indeterminate *ngIf="progress" diameter="32"></mat-spinner>
+                         </div>
+                         <div *ngIf="!progress">
+                         {{errorHTTP ? 'Can not connect to repository' : 'Please choose a branch'}}
+                        </div>
+                         
+                      </mat-panel-description>
+                   </mat-expansion-panel-header>
+                   <!--<app-login-form></app-login-form>-->
+                   <mat-radio-group [(ngModel)]="activeBranch" (click)="chooseBranch();">
+                      <div *ngFor="let branch of branches">
+                         <br>
+                         <mat-radio-button value="{{branch.name}}">
+                            {{branch.name}}
+                         </mat-radio-button>
+                         <br>
+                      </div>
+                   </mat-radio-group>
+                </mat-expansion-panel>
+             </mat-accordion>
+          </div>
+       </div>
+       <button mat-raised-button matStepperNext [disabled]="!firstStep" (click)="OnInputCluster(); OnInputAnalysis();">Next</button>
+    </mat-step>
+    <mat-step label="Cluster Config" [completed]="secondStep">
+       <div class="cluster-config">
+          <mat-form-field>
+             <input matInput placeholder="H2O URL" [(ngModel)]="H2O" required (keyup)="OnInputCluster();">
+          </mat-form-field>
+          <br><br>
+          <mat-form-field>
+               <input matInput type="number" placeholder="Port" [(ngModel)]="Port" required (keyup)="OnInputCluster();">
+         </mat-form-field>
+          <br>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext [disabled]="!secondStep" (click)="OnInputAnalysis();">Next</button>
+       </div>
+    </mat-step>
+    <mat-step label="Analysis Config" [completed]="thirdStep">
+       <div class="analysis-config">
+          <div class="tabContent">
+             <mat-form-field>
+                <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="Horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
+             </mat-form-field>
+             <br>
+             <mat-checkbox [(ngModel)]="checkFilenamePrefix">Filename-Prefix</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkFilenamePostfix">Filename-Postfix</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkPackage">Package</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkDependenciesExternal">Dependencies (internal)</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkDependenciesInternal">Dependencies (external)</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkComplexity">Cyclomatic Complexity</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkLines">Lines of Code</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkAuthor">Author</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkComments">Number of Comments</mat-checkbox>
+             <br>
+             <mat-checkbox [(ngModel)]="checkWeekday">Weekday</mat-checkbox>
+             <br>
+          </div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float:right;" (click)="commitToBackend();"  [disabled]="!thirdStep">Start Analysis</button>
+       </div>
+    </mat-step>
+ </mat-horizontal-stepper>
+ 
+
