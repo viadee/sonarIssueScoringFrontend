@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './layout/views/dashboard/dashboard.component';
 import { WizardComponent } from './layout/views/wizard/wizard.component';
-import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
