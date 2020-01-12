@@ -1,16 +1,13 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule, routingComponents } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-//import { DashboardComponent } from './dashboard/dashboard.component';
-//import { WizardComponent } from './wizard/wizard.component';
-import { NavbarComponent } from "./navbar/navbar.component";
-import { LoginFormComponent } from "./login-form/login-form.component";
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';  //
+import { AppRoutingModule, routingComponents } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 //Material
 import {
@@ -25,11 +22,11 @@ import {
   MatIconModule,
   MatCheckboxModule,
   MatSnackBarModule
-} from "@angular/material";
+} from '@angular/material';
 import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
-import { FooterComponent } from './footer/footer.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { AnalysisComponent } from './analysis/analysis.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HomepageComponent } from './layout/views/homepage/homepage.component';
+import { AnalysisComponent } from './layout/views/analysis/analysis.component';
 
 
 @NgModule({
@@ -38,7 +35,6 @@ import { AnalysisComponent } from './analysis/analysis.component';
     //DashboardComponent,
     routingComponents,
     NavbarComponent,
-    LoginFormComponent,
     DashboardItemComponent,
     FooterComponent,
     HomepageComponent,

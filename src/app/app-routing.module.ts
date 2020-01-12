@@ -1,14 +1,13 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { WizardComponent } from "./wizard/wizard.component";
-import { LoginFormComponent } from "./login-form/login-form.component";
+import { DashboardComponent } from './layout/views/dashboard/dashboard.component';
+import { WizardComponent } from './layout/views/wizard/wizard.component';
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "wizard", component: WizardComponent }
+  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'wizard', component: WizardComponent }
 ];
 
 @NgModule({
