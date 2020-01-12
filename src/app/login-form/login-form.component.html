@@ -1,0 +1,62 @@
+<mat-tab-group class="tab-login">
+  <mat-tab label="Public">
+    <div class="login-container">
+      <h2>Public Login</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            required
+            autofocus
+            name="username"
+            [(ngModel)]="authUsername"
+          />
+        </div>
+        <button
+          mat-stroked-button
+          type="submit"
+          (click)="onConnectToGithub()"
+          color="primary"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Private">
+    <div class="login-container">
+      <h2>Private Login</h2>
+      <form>
+        <div class="form-group">
+          <label for="token">Token</label>
+          <input
+            type="text"
+            class="form-control"
+            id="token"
+            required
+            autofocus
+            name="token"
+            [(ngModel)]="authUsername"
+          />
+        </div>
+        <button
+          mat-stroked-button
+          type="submit"
+          (click)="onConnectToGithub()"
+          color="primary"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<button mat-raised-button (click)="showRepo()">Log (Test)</button>
+
+<pre>
+  {{ repositories | async | json }}
+</pre>
