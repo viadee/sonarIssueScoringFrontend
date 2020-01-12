@@ -26,7 +26,7 @@ import {
   MatCheckboxModule,
   MatSnackBarModule
 } from '@angular/material';
-import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
+import { DashboardItemComponent } from './layout/views/dashboard-item/dashboard-item.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomepageComponent } from './layout/views/homepage/homepage.component';
 import { AnalysisComponent } from './layout/views/analysis/analysis.component';
