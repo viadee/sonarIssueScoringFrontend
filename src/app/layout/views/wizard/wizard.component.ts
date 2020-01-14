@@ -18,6 +18,8 @@ export class WizardComponent implements OnInit {
   secondStep = false;
   thirdStep = false;
 
+  formResult;
+
   //Step 1 (Repository)
 
   repositoryURL: string;
@@ -34,11 +36,11 @@ export class WizardComponent implements OnInit {
   branches;
 
   //Step 2 (Cluster Config)
-  H2O: string;
+  h2o: string;
   Port: number;
 
   //Step 3 (Analysis Config)
-  Horizon: number;
+  horizon: number;
     //Checkboxes
     checkFilenamePrefix = false;
     checkFilenamePostfix = false;
@@ -61,7 +63,31 @@ export class WizardComponent implements OnInit {
       {'name':'test'},
       {'name':'HEAD'}
     ];
+
+    //JSON for form
+    this.formResult = [
+      { 'url': null },
+      { 'user': null },
+      { 'branch': null },
+      { 'h2o': null },
+      { 'port': null},
+      { 'horizon': null },
+      { 'filenamePrefix': null },
+      { 'filenamePostfix': null },
+      { 'package': null },
+      { 'dependenciesExternal': null },
+      { 'dependenciesInternal': null },
+      { 'complexity': null },
+      { 'lines': null },
+      { 'author': null },
+      { 'comments': null },
+      { 'weekday': null },
+    ];
+
+    
   }
+
+  
 
   //Functions for Step 1 (Repository)
 
@@ -158,7 +184,7 @@ export class WizardComponent implements OnInit {
   //Functions for Step 2 (Cluster Config)
 
   OnInputCluster() {
-    if((this.H2O != null && this.H2O != '') && this.Port != null) {
+    if((this.h2o != null && this.h2o != '') && this.Port != null) {
       this.secondStep = true;
     } else {
       this.secondStep = false;
@@ -168,7 +194,7 @@ export class WizardComponent implements OnInit {
   //Functions for Step 3 (Analysis Config)
 
   OnInputAnalysis() {
-    if(this.Horizon != null && this.Horizon > 0) {
+    if(this.horizon != null && this.horizon > 0) {
       this.thirdStep = true;
     } else {
       this.thirdStep = false;
@@ -178,25 +204,51 @@ export class WizardComponent implements OnInit {
   commitToBackend() {
 
     this.snackBar.open('Added to queque', '', {duration: 4000});
+
+    //JSON:
+
+    this.formResult.url = this.URL;
+    this.formResult.user = this.authUsername;
+    this.formResult.branch = this.activeBranch;
+    this.formResult.h2o = this.h2o;
+    this.formResult.port = this.Port;
+    this.formResult.horizon = this.horizon;
+    this.formResult.filenamePrefix = this.checkFilenamePrefix;
+    this.formResult.filenamePostfix = this.checkFilenamePostfix;
+    this.formResult.package = this.checkPackage;
+    this.formResult.dependenciesExternal = this.checkDependenciesExternal;
+    this.formResult.dependenciesInternal = this.checkDependenciesInternal;
+    this.formResult.complexity = this.checkComplexity;
+    this.formResult.lines = this.checkLines;
+    this.formResult.author = this.checkAuthor;
+    this.formResult.comments = this.checkComments;
+    this.formResult.weekday = this.checkWeekday;
+
+    //Console Output
+
+    console.log("The analysis will start with these parameters:");
+    console.log('Repository URL: ' + this.formResult.url);
+    console.log('User: ' + this.formResult.user);
+    console.log('Branch: ' + this.formResult.branch);
+    console.log('H²O URL: ' + this.formResult.h2o + ':' + this.formResult.port);
+    console.log('Horizon: ' + this.formResult.horizon + ' comit(s)');
+
+    console.log('Filename-Prefix: ' + this.formResult.filenamePrefix);
+    console.log('Filename-Postfix: ' + this.formResult.filenamePostfix);
+    console.log('Package: ' + this.formResult.package);
+    console.log('Dependencies (external): ' + this.formResult.dependenciesExternal);
+    console.log('Dependencies (internal): ' + this.formResult.dependenciesInternal);
+    console.log('Complexity: ' + this.formResult.complexity);
+    console.log('LinesOfCode: ' + this.formResult.lines);
+    console.log('Author: ' + this.formResult.author);
+    console.log('Comments: ' + this.formResult.comments);
+    console.log('Weekday: ' + this.formResult.weekday);
+
+    //The HTTP Post is missing here...
+
     this.router.navigate(['/dashboard']);
 
-    console.log('The analysis will start with:');
-    console.log('Repository URL: ' + this.URL);
-    console.log('User: ' + this.authUsername);
-    console.log('Branch: ' + this.activeBranch);
-    console.log('H²O URL: ' + this.H2O + ':' + this.Port);
-    console.log('Horizon: ' + this.Horizon + ' comit(s)');
-
-    console.log('Filename-Prefix: ' + this.checkFilenamePrefix);
-    console.log('Filename-Postfix: ' + this.checkFilenamePostfix);
-    console.log('Package: ' + this.checkPackage);
-    console.log('Dependencies (external): ' + this.checkDependenciesExternal);
-    console.log('Dependencies (internal): ' + this.checkDependenciesInternal);
-    console.log('Complexity: ' + this.checkComplexity);
-    console.log('LinesOfCode: ' + this.checkLines);
-    console.log('Author: ' + this.checkAuthor);
-    console.log('Comments: ' + this.checkComments);
-    console.log('Weekday: ' + this.checkWeekday);
   }
+  
 
 }
