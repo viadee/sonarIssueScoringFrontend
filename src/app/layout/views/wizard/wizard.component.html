@@ -15,13 +15,13 @@
           </mat-form-field>
           <button mat-raised-button style="margin-left: 16px;" type="submit" (click)="onConnectToGithub()" [disabled]="checkbutton">Check Connection</button>
           <br><br>
-          
+
           <mat-form-field>
              <input matInput type="password" placeholder="Password"  [disabled]="firstStep">
           </mat-form-field>
-          
+
           <br><br>
-         
+
           <div class="mat-accordion">
              <mat-accordion *ngIf="Accordion">
                 <mat-expansion-panel disabled hideToggle [expanded]="AccordionExpansion">
@@ -36,7 +36,7 @@
                          <div *ngIf="!progress">
                          {{errorHTTP ? 'Can not connect to repository' : 'Please choose a branch'}}
                         </div>
-                         
+
                       </mat-panel-description>
                    </mat-expansion-panel-header>
                    <!--<app-login-form></app-login-form>-->
@@ -58,7 +58,7 @@
     <mat-step label="Cluster Config" [completed]="secondStep">
        <div class="cluster-config">
           <mat-form-field>
-             <input matInput placeholder="H2O URL" [(ngModel)]="H2O" required (keyup)="OnInputCluster();">
+             <input matInput placeholder="H2O URL" [(ngModel)]="h2o" required (keyup)="OnInputCluster();">
           </mat-form-field>
           <br><br>
           <mat-form-field>
@@ -73,7 +73,7 @@
        <div class="analysis-config">
           <div class="tabContent">
              <mat-form-field>
-                <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="Horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
+                <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
              </mat-form-field>
              <br>
              <mat-checkbox [(ngModel)]="checkFilenamePrefix">Filename-Prefix</mat-checkbox>
@@ -102,5 +102,5 @@
        </div>
     </mat-step>
  </mat-horizontal-stepper>
- 
+
 
