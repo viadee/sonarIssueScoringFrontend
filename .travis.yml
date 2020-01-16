@@ -1,30 +1,15 @@
-dist: trusty
-sudo: false
-
 language: node_js
 node_js:
   - "13"
+sudo: true
+dist: trusty
 
 branches:
   only:
     - master
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-  sonarcloud:
-    organization: "viadee"
-    token:
-      secure: $SONAR_TOKEN
-cache:
-  directories:
-    - ./node_modules
-
-install:
+before_script:
   - npm install
 
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm run test
