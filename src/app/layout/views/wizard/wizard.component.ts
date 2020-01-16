@@ -36,7 +36,7 @@ export class WizardComponent implements OnInit {
   //Step 2 (Cluster Config)
   H2O : string;
   Port : number;
-  
+
   //Step 3 (Analysis Config)
   Horizon : number;
     //Checkboxes
@@ -115,11 +115,11 @@ export class WizardComponent implements OnInit {
         } else {
           this.URL = null;
         }
-        
+
       } else {
         this.URL = null;
       }
-      
+
 
       if (this.URL != null) {
         this.progress = true;
@@ -209,7 +209,7 @@ export class WizardComponent implements OnInit {
     console.log("Branch: " + this.activeBranch);
     console.log("H²O URL: " + this.H2O + ":" + this.Port);
     console.log("Horizon: " + this.Horizon + " comit(s)");
-  
+
     console.log("Filename-Prefix: " + this.checkFilenamePrefix);
     console.log("Filename-Postfix: " + this.checkFilenamePostfix);
     console.log("Package: " + this.checkPackage);
