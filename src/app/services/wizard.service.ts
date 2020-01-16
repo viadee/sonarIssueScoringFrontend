@@ -1,3 +1,3 @@
-class WizardService() {
+class WizardService {
 
 }

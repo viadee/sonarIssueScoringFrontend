@@ -1,3 +1,3 @@
-class Wizard() {
-  url: String;
+export interface Wizard {
+  id?: number;
 }
