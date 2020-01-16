@@ -36,13 +36,10 @@ export class WizardComponent implements OnInit {
   branches;
 
   //Step 2 (Cluster Config)
-<<<<<<< HEAD
-  H2O : string;
-  Port : number;
-=======
+
   h2o: string;
   Port: number;
->>>>>>> 7324fd06d5bd3efa25b9ee2f3925c61caccaa912
+
 
   //Step 3 (Analysis Config)
   horizon: number;
@@ -253,13 +250,13 @@ export class WizardComponent implements OnInit {
 
     this.router.navigate(['/dashboard']);
 
-<<<<<<< HEAD
+
     console.log("The analysis will start with:");
     console.log("Repository URL: " + this.URL);
     console.log("User: " + this.authUsername);
     console.log("Branch: " + this.activeBranch);
-    console.log("H²O URL: " + this.H2O + ":" + this.Port);
-    console.log("Horizon: " + this.Horizon + " comit(s)");
+    console.log("H²O URL: " + this.h2o + ":" + this.Port);
+    console.log("Horizon: " + this.horizon + " comit(s)");
 
     console.log("Filename-Prefix: " + this.checkFilenamePrefix);
     console.log("Filename-Postfix: " + this.checkFilenamePostfix);
@@ -271,8 +268,7 @@ export class WizardComponent implements OnInit {
     console.log("Author: " + this.checkAuthor);
     console.log("Comments: " + this.checkComments);
     console.log("Weekday: " + this.checkWeekday);
-=======
->>>>>>> 7324fd06d5bd3efa25b9ee2f3925c61caccaa912
+
   }
   
 
