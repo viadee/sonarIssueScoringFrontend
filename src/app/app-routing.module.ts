@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './layout/views/dashboard/dashboard.component';
 import { WizardComponent } from './layout/views/wizard/wizard.component';
+import { IndexComponent} from './layout/views/index/index.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: IndexComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'wizard', component: WizardComponent }
 ];

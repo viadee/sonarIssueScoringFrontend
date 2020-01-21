@@ -24,6 +24,7 @@ import {
   MatCheckboxModule,
   MatSnackBarModule
 } from '@angular/material';
+import { IndexComponent } from './views/index/index.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {
     DashboardComponent,
     DashboardItemComponent,
     HomepageComponent,
-    WizardComponent
+    WizardComponent,
+    IndexComponent
   ],
   imports: [
     CommonModule,
