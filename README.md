@@ -1,3 +1,9 @@
+SonarIssueScoring is a tool for analysing a repository of a software development project.
+What you get is a prioritization of SonarQube issues and a prediction which files in a repository will change.
+
+To start a new analysis, you have to click on "Create a project". Just enter the Source Path or URL of your software development project, your username and the URL of your H2O installation, choose a prediction horizon and give it a go.
+Previously created projects will be shown on your dashboard for availability at any time. 
+
 # SonarIssueScoringFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
