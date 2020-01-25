@@ -1,3 +1,22 @@
+.header {
+  background-color: #ffcf6b;
+  height: 40%;
+  text-align: left;
+  padding-top: 100px;
+  display: flex;
+}
+
+.text {
+  margin-left:20%;
+  font-size: large;
+  flex: 50%;
+}
+
+.headline {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
 .row.row-button {
     text-align: center;
   }

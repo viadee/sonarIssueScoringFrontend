@@ -83,7 +83,7 @@ export class WizardComponent implements OnInit {
       { 'lines': null },
       { 'author': null },
       { 'comments': null },
-      { 'weekday': null },
+      { 'weekday': null }
     ];
 
     
@@ -246,7 +246,9 @@ export class WizardComponent implements OnInit {
     console.log('Comments: ' + this.formResult.comments);
     console.log('Weekday: ' + this.formResult.weekday);
 
+
     //The HTTP Post is missing here...
+    
 
     this.router.navigate(['/dashboard']);
 
