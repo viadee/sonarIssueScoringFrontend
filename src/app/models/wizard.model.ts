@@ -1,4 +1,5 @@
 export interface Wizard {
+
   url: String,
   user: String,
   branch: String,
@@ -15,4 +16,5 @@ export interface Wizard {
   author: Boolean,
   comments: Boolean,
   weekday: Boolean
+
 }
