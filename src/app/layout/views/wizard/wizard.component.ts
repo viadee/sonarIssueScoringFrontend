@@ -68,6 +68,17 @@ export class WizardComponent implements OnInit {
     ];
 
     //JSON for form
+
+    this.formResult = {
+      'url': null ,
+      'user': null ,
+      'branch': null ,
+      'h2o': null ,
+      'port': null,
+      'horizon': null,
+    }
+
+    /*
     this.formResult = [
       { 'url': null },
       { 'user': null },
@@ -77,7 +88,7 @@ export class WizardComponent implements OnInit {
       { 'horizon': null },
       { 'filenamePrefix': null },
       { 'filenamePostfix': null },
-      { 'package': null },
+      { 'isPackage': null },
       { 'dependenciesExternal': null },
       { 'dependenciesInternal': null },
       { 'complexity': null },
@@ -86,7 +97,7 @@ export class WizardComponent implements OnInit {
       { 'comments': null },
       { 'weekday': null }
     ];
-
+    */
     this.analyticsService = "cc";
     
   }
@@ -211,7 +222,16 @@ export class WizardComponent implements OnInit {
     this.snackBar.open('Added to queque', '', {duration: 4000});
 
     //JSON:
+    this.formResult = {
+      'url': this.URL ,
+      'user': this.authUsername ,
+      'branch': this.activeBranch ,
+      'h2o': this.h2o,
+      'port': this.Port,
+      'horizon': this.horizon,
+    }
 
+    /*
     this.formResult.url = this.URL;
     this.formResult.user = this.authUsername;
     this.formResult.branch = this.activeBranch;
@@ -220,7 +240,7 @@ export class WizardComponent implements OnInit {
     this.formResult.horizon = this.horizon;
     this.formResult.filenamePrefix = this.checkFilenamePrefix;
     this.formResult.filenamePostfix = this.checkFilenamePostfix;
-    this.formResult.package = this.checkPackage;
+    this.formResult.isPackage = this.checkPackage;
     this.formResult.dependenciesExternal = this.checkDependenciesExternal;
     this.formResult.dependenciesInternal = this.checkDependenciesInternal;
     this.formResult.complexity = this.checkComplexity;
@@ -228,7 +248,7 @@ export class WizardComponent implements OnInit {
     this.formResult.author = this.checkAuthor;
     this.formResult.comments = this.checkComments;
     this.formResult.weekday = this.checkWeekday;
-
+    */
     //Console Output
 
     console.log("The analysis will start with these parameters:");
@@ -240,7 +260,7 @@ export class WizardComponent implements OnInit {
 
     console.log('Filename-Prefix: ' + this.formResult.filenamePrefix);
     console.log('Filename-Postfix: ' + this.formResult.filenamePostfix);
-    console.log('Package: ' + this.formResult.package);
+    console.log('Package: ' + this.formResult.isPackage);
     console.log('Dependencies (external): ' + this.formResult.dependenciesExternal);
     console.log('Dependencies (internal): ' + this.formResult.dependenciesInternal);
     console.log('Complexity: ' + this.formResult.complexity);
@@ -250,15 +270,18 @@ export class WizardComponent implements OnInit {
     console.log('Weekday: ' + this.formResult.weekday);
 
 
-    //The HTTP Post is missing here...
     
     if(this.analyticsService == "cc") {
-      console.log('Change-Count');
+      console.log('Service: Change-Count');
+      this.http.post('https://localhost:3000/server/analytics/change-count', this.formResult).toPromise().then(data => {
+        this.router.navigate(['/dashboard']);
+      });
     } else if(this.analyticsService == "oi") {
-      console.log('Order-Issue');
+      console.log('Service: Order-Issue');
+      this.http.post('http://localhost:3000/server/analytics/ordering-issues', this.formResult).toPromise().then(data => {
+        this.router.navigate(['/dashboard']);
+      });
     }
-
-    this.router.navigate(['/dashboard']);
 
 
   }

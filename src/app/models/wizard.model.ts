@@ -7,7 +7,7 @@ export interface Wizard {
   horizon: number,
   filenamePrefix: Boolean,
   filenamePostfix: Boolean,
-  package: Boolean,
+  isPackage: Boolean,
   dependenciesExternal: Boolean,
   dependenciesInternal: Boolean,
   complexity: Boolean,
