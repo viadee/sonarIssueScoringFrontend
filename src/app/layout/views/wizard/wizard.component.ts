@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
+import { Wizard } from 'src/app/models/wizard.model';
 
 @Component({
   selector: 'app-wizard',
@@ -17,16 +18,13 @@ export class WizardComponent implements OnInit {
   firstStep = false;
   secondStep = false;
   thirdStep = false;
-
-  formResult;
-
-  //Step 1 (Repository)
+  // Step 1 (Repository)
 
   repositoryURL: string;
   URL: string;
   authUsername: string;
-  Accordion = false; //Controlls the visability of the Accordion
-  AccordionExpansion = false; //Controlls the Expansion of the Accordion
+  Accordion = false; // Controlls the visability of the Accordion
+  AccordionExpansion = false; // Controlls the Expansion of the Accordion
   progress = true;
   checkbutton = true;
   activeBranch: string;
@@ -35,16 +33,16 @@ export class WizardComponent implements OnInit {
   repos;
   branches;
 
-  //Step 2 (Cluster Config)
+  // Step 2 (Cluster Config)
 
   h2o: string;
   Port: number;
 
 
-  //Step 3 (Analysis Config)
+  // Step 3 (Analysis Config)
   horizon: number;
   analyticsService: string;
-    //Checkboxes
+    // Checkboxes
     checkFilenamePrefix = false;
     checkFilenamePostfix = false;
     checkPackage = false;
@@ -60,51 +58,20 @@ export class WizardComponent implements OnInit {
 
   ngOnInit() {
 
-    //This Array is only for testing-purpose
+    // This Array is only for testing-purpose
     this.branches = [
-      {'name':'master'},
-      {'name':'test'},
-      {'name':'HEAD'}
+      {name: 'master'},
+      {name: 'test'},
+      {name: 'HEAD'}
     ];
 
-    //JSON for form
+    this.analyticsService = 'cc';
 
-    this.formResult = {
-      'url': null ,
-      'user': null ,
-      'branch': null ,
-      'h2o': null ,
-      'port': null,
-      'horizon': null,
-    }
-
-    /*
-    this.formResult = [
-      { 'url': null },
-      { 'user': null },
-      { 'branch': null },
-      { 'h2o': null },
-      { 'port': null},
-      { 'horizon': null },
-      { 'filenamePrefix': null },
-      { 'filenamePostfix': null },
-      { 'isPackage': null },
-      { 'dependenciesExternal': null },
-      { 'dependenciesInternal': null },
-      { 'complexity': null },
-      { 'lines': null },
-      { 'author': null },
-      { 'comments': null },
-      { 'weekday': null }
-    ];
-    */
-    this.analyticsService = "cc";
-    
   }
 
-  
 
-  //Functions for Step 1 (Repository)
+
+  // Functions for Step 1 (Repository)
 
   Reset() {
     this.firstStep = false;
@@ -130,7 +97,7 @@ export class WizardComponent implements OnInit {
     this.checkAuthor = false;
     this.checkComments = false;
     this.checkWeekday = false;
-    this.analyticsService = "cc";
+    this.analyticsService = 'cc';
   }
 
 
@@ -143,7 +110,7 @@ export class WizardComponent implements OnInit {
       if (this.repositoryURL.startsWith('http://') || this.repositoryURL.startsWith('https://')) {
 
         if (this.repositoryURL.includes('.com/')) {
-          this.URL = this.repositoryURL.substring(((this.repositoryURL.indexOf('.com/'))+5), this.repositoryURL.length);
+          this.URL = this.repositoryURL.substring(((this.repositoryURL.indexOf('.com/')) + 5), this.repositoryURL.length);
         } else {
           this.URL = null;
         }
@@ -197,20 +164,20 @@ export class WizardComponent implements OnInit {
     this.firstStep = true;
   }
 
-  //Functions for Step 2 (Cluster Config)
+  // Functions for Step 2 (Cluster Config)
 
   OnInputCluster() {
-    if((this.h2o != null && this.h2o != '') && this.Port != null) {
+    if ((this.h2o != null && this.h2o != '') && this.Port != null) {
       this.secondStep = true;
     } else {
       this.secondStep = false;
     }
   }
 
-  //Functions for Step 3 (Analysis Config)
+  // Functions for Step 3 (Analysis Config)
 
   OnInputAnalysis() {
-    if(this.horizon != null && this.horizon > 0) {
+    if (this.horizon != null && this.horizon > 0) {
       this.thirdStep = true;
     } else {
       this.thirdStep = false;
@@ -221,70 +188,26 @@ export class WizardComponent implements OnInit {
 
     this.snackBar.open('Added to queque', '', {duration: 4000});
 
-    //JSON:
-    this.formResult = {
-      'url': this.URL ,
-      'user': this.authUsername ,
-      'branch': this.activeBranch ,
-      'h2o': this.h2o,
-      'port': this.Port,
-      'horizon': this.horizon,
-    }
+    let wizard = new Wizard(this.URL, this.authUsername, this.activeBranch, this.h2o, this.Port, this.horizon,
+      this.checkFilenamePrefix, this.checkFilenamePostfix, this.checkPackage, this.checkDependenciesExternal,
+      this.checkDependenciesInternal, this.checkComplexity, this.checkLines, this.checkAuthor, this.checkComments, this.checkWeekday);
 
-    /*
-    this.formResult.url = this.URL;
-    this.formResult.user = this.authUsername;
-    this.formResult.branch = this.activeBranch;
-    this.formResult.h2o = this.h2o;
-    this.formResult.port = this.Port;
-    this.formResult.horizon = this.horizon;
-    this.formResult.filenamePrefix = this.checkFilenamePrefix;
-    this.formResult.filenamePostfix = this.checkFilenamePostfix;
-    this.formResult.isPackage = this.checkPackage;
-    this.formResult.dependenciesExternal = this.checkDependenciesExternal;
-    this.formResult.dependenciesInternal = this.checkDependenciesInternal;
-    this.formResult.complexity = this.checkComplexity;
-    this.formResult.lines = this.checkLines;
-    this.formResult.author = this.checkAuthor;
-    this.formResult.comments = this.checkComments;
-    this.formResult.weekday = this.checkWeekday;
-    */
-    //Console Output
-
-    console.log("The analysis will start with these parameters:");
-    console.log('Repository URL: ' + this.formResult.url);
-    console.log('User: ' + this.formResult.user);
-    console.log('Branch: ' + this.formResult.branch);
-    console.log('H²O URL: ' + this.formResult.h2o + ':' + this.formResult.port);
-    console.log('Horizon: ' + this.formResult.horizon + ' comit(s)');
-
-    console.log('Filename-Prefix: ' + this.formResult.filenamePrefix);
-    console.log('Filename-Postfix: ' + this.formResult.filenamePostfix);
-    console.log('Package: ' + this.formResult.isPackage);
-    console.log('Dependencies (external): ' + this.formResult.dependenciesExternal);
-    console.log('Dependencies (internal): ' + this.formResult.dependenciesInternal);
-    console.log('Complexity: ' + this.formResult.complexity);
-    console.log('LinesOfCode: ' + this.formResult.lines);
-    console.log('Author: ' + this.formResult.author);
-    console.log('Comments: ' + this.formResult.comments);
-    console.log('Weekday: ' + this.formResult.weekday);
-
-
-    
-    if(this.analyticsService == "cc") {
-      console.log('Service: Change-Count');
-      this.http.post('https://localhost:3000/server/analytics/change-count', this.formResult).toPromise().then(data => {
+    if (this.analyticsService == 'cc') {
+      const myHeaders = new HttpHeaders();
+      myHeaders.append('Content-Type', 'application/json');
+      this.http.post('/server/analytics/change-count', wizard, {headers : myHeaders}).toPromise().then(data => {
         this.router.navigate(['/dashboard']);
       });
-    } else if(this.analyticsService == "oi") {
-      console.log('Service: Order-Issue');
-      this.http.post('http://localhost:3000/server/analytics/ordering-issues', this.formResult).toPromise().then(data => {
+    } else if (this.analyticsService == 'oi') {
+      const myHeaders = new HttpHeaders();
+      myHeaders.append('Content-Type', 'application/json');
+      this.http.post('/server/analytics/ordering-issues', wizard, {headers : myHeaders}).toPromise().then(data => {
         this.router.navigate(['/dashboard']);
       });
     }
 
 
   }
-  
+
 
 }
