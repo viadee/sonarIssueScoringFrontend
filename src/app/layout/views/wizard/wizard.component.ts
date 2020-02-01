@@ -43,6 +43,7 @@ export class WizardComponent implements OnInit {
 
   //Step 3 (Analysis Config)
   horizon: number;
+  analyticsService: string;
     //Checkboxes
     checkFilenamePrefix = false;
     checkFilenamePostfix = false;
@@ -86,6 +87,7 @@ export class WizardComponent implements OnInit {
       { 'weekday': null }
     ];
 
+    this.analyticsService = "cc";
     
   }
 
@@ -117,6 +119,7 @@ export class WizardComponent implements OnInit {
     this.checkAuthor = false;
     this.checkComments = false;
     this.checkWeekday = false;
+    this.analyticsService = "cc";
   }
 
 
@@ -249,27 +252,14 @@ export class WizardComponent implements OnInit {
 
     //The HTTP Post is missing here...
     
+    if(this.analyticsService == "cc") {
+      console.log('Change-Count');
+    } else if(this.analyticsService == "oi") {
+      console.log('Order-Issue');
+    }
 
     this.router.navigate(['/dashboard']);
 
-
-    console.log("The analysis will start with:");
-    console.log("Repository URL: " + this.URL);
-    console.log("User: " + this.authUsername);
-    console.log("Branch: " + this.activeBranch);
-    console.log("H²O URL: " + this.h2o + ":" + this.Port);
-    console.log("Horizon: " + this.horizon + " comit(s)");
-
-    console.log("Filename-Prefix: " + this.checkFilenamePrefix);
-    console.log("Filename-Postfix: " + this.checkFilenamePostfix);
-    console.log("Package: " + this.checkPackage);
-    console.log("Dependencies (external): " + this.checkDependenciesExternal);
-    console.log("Dependencies (internal): " + this.checkDependenciesInternal);
-    console.log("Complexity: " + this.checkComplexity);
-    console.log("LinesOfCode: " + this.checkLines);
-    console.log("Author: " + this.checkAuthor);
-    console.log("Comments: " + this.checkComments);
-    console.log("Weekday: " + this.checkWeekday);
 
   }
   

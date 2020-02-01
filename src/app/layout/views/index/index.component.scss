@@ -1,6 +1,6 @@
 .header {
   background-color: #ffcf6b;
-  height: 40%;
+  min-height: 40%;
   text-align: left;
   padding-top: 100px;
   display: flex;
@@ -8,6 +8,7 @@
 
 .text {
   margin-left:20%;
+  padding: 20px;
   font-size: large;
   flex: 50%;
 }

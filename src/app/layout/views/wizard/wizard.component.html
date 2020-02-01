@@ -72,31 +72,44 @@
     <mat-step label="Analysis Config" [completed]="thirdStep">
        <div class="analysis-config">
           <div class="tabContent">
-             <mat-form-field>
-                <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
-             </mat-form-field>
-             <br>
-             <mat-checkbox [(ngModel)]="checkFilenamePrefix">Filename-Prefix</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkFilenamePostfix">Filename-Postfix</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkPackage">Package</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkDependenciesExternal">Dependencies (internal)</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkDependenciesInternal">Dependencies (external)</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkComplexity">Cyclomatic Complexity</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkLines">Lines of Code</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkAuthor">Author</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkComments">Number of Comments</mat-checkbox>
-             <br>
-             <mat-checkbox [(ngModel)]="checkWeekday">Weekday</mat-checkbox>
-             <br>
-          </div>
+             <div class="step03">
+             <div>
+               <mat-form-field>
+                  <input matInput type="number" placeholder="Prediction Horizon" [(ngModel)]="horizon" (keyup)="OnInputAnalysis();" pattern="[0-9]+" required>
+               </mat-form-field>
+               <br>
+               <mat-checkbox [(ngModel)]="checkFilenamePrefix">Filename-Prefix</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkFilenamePostfix">Filename-Postfix</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkPackage">Package</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkDependenciesExternal">Dependencies (internal)</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkDependenciesInternal">Dependencies (external)</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkComplexity">Cyclomatic Complexity</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkLines">Lines of Code</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkAuthor">Author</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkComments">Number of Comments</mat-checkbox>
+               <br>
+               <mat-checkbox [(ngModel)]="checkWeekday">Weekday</mat-checkbox>
+               <br>
+             </div>
+             <div>
+                <br>
+                Analystics Service:
+                <br><br>
+               <mat-radio-group [(ngModel)]="analyticsService">
+                  <mat-radio-button value="cc">Change-Count</mat-radio-button><br><br>
+                  <mat-radio-button value="oi">Ordering-Issue</mat-radio-button><br><br>
+                </mat-radio-group>
+             </div>
+             </div>
+          </div><br>
           <button mat-raised-button matStepperPrevious>Back</button>
           <button mat-raised-button color="primary" style="float:right;" (click)="commitToBackend();"  [disabled]="!thirdStep">Start Analysis</button>
        </div>

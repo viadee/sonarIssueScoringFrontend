@@ -40,3 +40,14 @@ button {
   background-color: #ffcf6b;
   color: black;
 }
+
+.step03 {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.step03 > div {
+  padding: 0px 30px;
+}
