@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ResultFile } from 'src/app/models/result-file.model';
 
 @Component({
   selector: 'app-dashboard-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-item.component.scss']
 })
 export class DashboardItemComponent implements OnInit {
+  @Input() result: ResultFile;
 
   constructor() { }
 

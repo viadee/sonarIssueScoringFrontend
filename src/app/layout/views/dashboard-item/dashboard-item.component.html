@@ -1,28 +1,40 @@
 <div class="dashboard-item">
   <div class="card-header"></div>
   <div class="card-content">
-    <div class="row">
-      <div class="col-1-2">
-        <p><b>Name</b></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-1-2">
+          <p><b>Name</b></p>
+        </div>
+        <div class="col-2-2">
+          <p>{{result.name}}</p>
+        </div>
       </div>
-      <div class="col-2-2">
-        <p>SchiffeVers</p>
+      <div class="row">
+        <div class="col-1-2">
+          <p><b>Date</b></p>
+        </div>
+        <div class="col-2-2">
+          <p>{{result.date}}</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-1-2">
-        <p><b>Date</b></p>
+      <div class="row">
+        <div class="col-1-2">
+          <p><b>Repository</b></p>
+        </div>
+        <div class="col-2-2">
+          <p>{{result.repository}}</p>
+        </div>
       </div>
-      <div class="col-2-2">
-        <p>19.12.2019</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1-2">
-        <p><b>Repository</b></p>
-      </div>
-      <div class="col-2-2">
-        <p>Github/SchiffVers</p>
+      <div class="row">
+        <div class="col-1-2">
+          <p><b>Result</b></p>
+        </div>
+        <div class="col-2-2">
+          <mat-form-field>
+            <textarea matInput placeholder="Textarea">{{result.result}}</textarea>
+          </mat-form-field>
+        </div>
       </div>
     </div>
   </div>

@@ -3,9 +3,9 @@ p {
 }
 
 .dashboard-item {
-  width: 80%;
+  width: 100%;
   /*width:400px;*/
-  height: 200px;
+  height: 100%;
   background-color: #ffffff;
   box-shadow: 0px 3px 15px #888888;
   margin: 30px 0;
@@ -34,4 +34,8 @@ p {
 .col-2-2 {
   width: 70%;
   float: left;
+}
+
+.mat-form-field {
+  width: 100%;
 }
