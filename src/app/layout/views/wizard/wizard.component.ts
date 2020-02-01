@@ -188,7 +188,7 @@ export class WizardComponent implements OnInit {
 
     this.snackBar.open('Added to queque', '', {duration: 4000});
 
-    let wizard = new Wizard(this.URL, this.authUsername, this.activeBranch, this.h2o, this.Port, this.horizon,
+    let wizard = new Wizard(this.repositoryURL, this.authUsername, this.activeBranch, this.h2o, this.Port, this.horizon,
       this.checkFilenamePrefix, this.checkFilenamePostfix, this.checkPackage, this.checkDependenciesExternal,
       this.checkDependenciesInternal, this.checkComplexity, this.checkLines, this.checkAuthor, this.checkComments, this.checkWeekday);
 
