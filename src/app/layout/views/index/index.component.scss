@@ -1,15 +1,16 @@
 .header {
   background-color: #ffcf6b;
-  min-height: 40%;
+  min-height: 50%;
   text-align: left;
-  padding-top: 100px;
+  padding: 120px 0;
+  display: -webkit-box;
   display: flex;
 }
 
 .text {
-  margin-left:20%;
+  margin-left:10%;
   padding: 20px;
-  font-size: large;
+  font-size: 15px;
   flex: 50%;
 }
 
@@ -21,11 +22,40 @@
 .row.row-button {
     text-align: center;
   }
-  
-  .btn-new-project {
-    background-color: white;
-    //background-color: #ffcf6b;
-    border-radius: 50px 50px 50px 50px;
-    padding: 10px 40px;
-    margin: 20px 0;
-  }
+
+.btn-new-project {
+  background-color: white;
+  //background-color: #ffcf6b;
+  border-radius: 50px 50px 50px 50px;
+  padding: 10px 40px;
+  margin: 20px 0;
+}
+
+nav {
+  background-color: #ffcf6b;
+  box-shadow: none;
+}
+
+
+.row {
+  width: 100%;
+}
+
+.col-1-2 {
+  width: 50%;
+  float: left;
+  background: #ffffff;
+  padding: 100px 0;
+}
+
+.col-2-2 {
+  width: 50%;
+  float: right;
+  background: #ededed;
+  padding: 100px 0;
+}
+
+.text-content {
+  width:80%;
+  margin: 0 10%;
+}
